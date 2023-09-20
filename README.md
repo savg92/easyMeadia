@@ -1,1 +1,1 @@
-# easyMeadia
+# easyMedia
