@@ -1,0 +1,87 @@
+/* This file contains the CSS styles for the messages component */
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.message-card {
+  width: 80%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.message-card h4 {
+  margin-bottom: 10px;
+}
+
+.message-card p {
+  margin-bottom: 5px;
+}
+
+.message-card small {
+  font-style: italic;
+}
+
+.message-card .actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.message-card .actions button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.message-card .actions button:hover {
+  background-color: #0069d9;
+}
+
+.message-card .actions .delete-btn {
+  background-color: #dc3545;
+}
+
+.message-card .actions .edit-btn {
+  background-color: #28a745;
+}
+
+.message-card .actions .edit-btn:hover {
+  background-color: #218838;
+}
+
+.message-form {
+  width: 80%;
+  margin-top: 20px;
+}
+
+.message-form textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.message-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.message-form button:hover {
+  background-color: #0069d9;
+}

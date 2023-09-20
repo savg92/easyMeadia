@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Publish a message</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <textarea class="form-control" id="content" name="content" [(ngModel)]="message.content" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Publish</button>
+  </form>
+</div>

@@ -1,0 +1,30 @@
+<p>form works!</p>
+<label>
+    Name: 
+    <input type="text" [(ngModel)]="name" />
+</label>
+<p>{{name}}</p>
+
+<form (ngSubmit)="showName()" #test="ngForm">
+  <input type="text" [(ngModel)]="name2" name="name" required />
+  <input type="submit" value="Submit" [disabled]="!test.form.valid" />
+</form>
+
+<form (ngSubmit)="showName2()" #test2="ngForm">
+    <input type="text" [formControl] = "name3" name="name3" required />
+    <input type="submit" value="Submit" [disabled]="!test2.form.valid" />
+</form>
+<p>{{name3.value}}</p>
+
+
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <p><input type="text" formControlName="username" /></p>
+    <p><input type="password" formControlName="password" /></p>
+    <p>
+        <input type="submit" value="Submit" [disabled]="!loginForm.valid" />
+        <input type="reset" value="Reset" (click)="loginForm.reset()"/>
+    </p>
+</form>
+
+<p>{{loginForm.value.username}}</p>
+<p>{{loginForm.value.password}}</p>
