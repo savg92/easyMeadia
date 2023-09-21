@@ -1,0 +1,50 @@
+<form
+	[formGroup]="loginForm"
+	(ngSubmit)="onSubmit()"
+>
+	<div class="flex flex-col">
+		<label
+			for="email"
+			class="label-form"
+			>Email</label
+		>
+		<input
+			type="email"
+			formControlName="email"
+			placeholder="example@email.com"
+			class="input-group"
+		/>
+	</div>
+	<div class="flex flex-col">
+		<label
+			for="password"
+			class="label-form"
+			>Password</label
+		>
+		<div class="input-group">
+			<input
+				type="{{ input }}"
+				formControlName="password"
+				placeholder="······"
+				style="font-size: large"
+				id="password"
+			/>
+			<button
+				type="button"
+				class="btn btn-outline-secondary"
+				(click)="toggleShow()"
+				class="btn-show"
+			>
+				<!-- <span class="eye"></span> -->
+			</button>
+		</div>
+	</div>
+	<div>
+		<input
+			type="submit"
+			value="SIGN IN"
+			[disabled]="!loginForm.valid"
+			class="submit-login"
+		/>
+	</div>
+</form>

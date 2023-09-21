@@ -11,20 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Message);
     }
   }
   User.init({
-    name: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    role: {
-      type: DataTypes.STRING,
-      defaultValue: 'user',
-      validate: {
-        isIn: [['user', 'admin']]
-      },
-    }
+    profile: DataTypes.ENUM('Admin', 'User')
   }, {
     sequelize,
     modelName: 'User',

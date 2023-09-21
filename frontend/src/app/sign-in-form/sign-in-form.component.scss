@@ -1,0 +1,57 @@
+form{
+    margin: 1rem 0rem;
+}
+
+.label-form {
+    color: #0E2248;
+    font-family: Lato;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.input-group {
+    width: 235px;
+    height: 32px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+input {
+    // width: 235px;
+    // height: 32px;
+    // flex-shrink: 0;
+    // border-radius: 20px;
+    background: none;
+    border: none;
+    // border: 1px solid #E0E0E0;
+    // padding-left: 20px;
+
+    color: #FFF;
+    // font-family: Lato, sans-serif, Arial, Helvetica;
+    font-family: sans-serif, Arial, Helvetica;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.btn-show {
+    background-image: url(../../assets/eye.svg);
+    width: 20px;
+    height: 20px;
+}
+
+.submit-login {
+    width: 235px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: linear-gradient(270deg, #C645A9 17.66%, #58BBDB 89.57%);
+    color: #FFF;
+    font-family: Lato;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

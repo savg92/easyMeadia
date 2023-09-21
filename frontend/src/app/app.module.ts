@@ -13,27 +13,45 @@ import { NotesListComponent } from './notes-list/notes-list.component';
 import { FormComponent } from './form/form.component';
 import routeConfig from './routes';
 import { NoteDetailComponent } from './note-detail/note-detail.component';
+import { WelcomeImageComponent } from './welcome-image/welcome-image.component';
+import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
+import { SingUpFormComponent } from './sing-up-form/sing-up-form.component';
+import { SingUpComponent } from './sing-up/sing-up.component';
+import { OtherComponent } from './other/other.component';
+// import { SingInComponent } from './sing-in/sing-in.component';
 
+import { AdminModule } from './admin/admin.module';
+import { LoginComponent } from './auth/login/login.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    NotesListComponent,
-    FormComponent,
-    AddNoteComponent,
-    NoteDetailComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HomeComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(routeConfig)
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  exports: [RouterModule]
+	declarations: [
+		AppComponent,
+		HomeComponent,
+		HeaderComponent,
+		NotesListComponent,
+		FormComponent,
+		AddNoteComponent,
+		NoteDetailComponent,
+		WelcomeImageComponent,
+		SignInFormComponent,
+		SingUpFormComponent,
+		SingUpComponent,
+		OtherComponent,
+		LoginComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		RouterModule.forRoot(routeConfig),
+		AdminModule,
+		HttpClientModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent],
+	exports: [RouterModule],
 })
-export class AppModule { }
+export class AppModule {}

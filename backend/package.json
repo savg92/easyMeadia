@@ -1,21 +1,29 @@
 {
-  "name": "backend",
+  "name": "server",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
+    "hbs": "^4.2.0",
+    "helmet": "^7.0.0",
     "http-errors": "~1.6.3",
-    "jade": "^0.29.0",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "~1.9.1",
     "nodemon": "^3.0.1",
     "pg": "^8.11.3",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.33.0",
-    "sequelize-cli": "^6.6.1"
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "sequelize": "^6.21.3",
+    "sequelize-cli": "^6.4.1"
   }
 }
