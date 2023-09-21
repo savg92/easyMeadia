@@ -1,6 +1,5 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
 		/**
@@ -13,23 +12,33 @@ module.exports = {
 		 * }], {});
 		 */
 		await queryInterface.bulkInsert(
-			'Users',
+			'Messages',
 			[
 				{
-					name: 'admin',
-					email: 'admin@easymedia.com',
-					password:
-						'$2b$10$XiQyf8dUxfSEN9ylJONkXei/k5b/QOQQBAicjx58aSi5Z.CLisv7e',
-					role: 'admin',
+					title: 'Message 1',
+					body: 'This is the first message',
+					UserId: 1,
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
 				{
-					name: 'John Doe',
-					email: 'jdoe@easymedia.com',
-					password:
-						'$2b$10$96csXUOAz5Y55sHyagNY6eIh301Lcrv9PDZujXnBieDC3m4pIrX3a',
-					role: 'user',
+					title: 'Message 2',
+					body: 'This is the second message',
+					UserId: 2,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
+				{
+					title: 'Message 3',
+					body: 'This is the third message',
+					UserId: 1,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
+				{
+					title: 'Message 4',
+					body: 'This is the fourth message',
+					UserId: 2,
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},
