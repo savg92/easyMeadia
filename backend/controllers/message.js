@@ -120,7 +120,7 @@ const getMessagesByWord = async (req, res) => {
 	// 		where: {
 	// 			[Op.or]: [
 	// 				{ title: { [Op.iLike]: `%${word}%` } },
-	// 				{ body: { [Op.iLike]: `%${word}%` } },
+	// 				// { body: { [Op.iLike]: `%${word}%` } },
 	// 			],
 	// 		},
 	// 	});
@@ -138,6 +138,56 @@ const getMessagesByWord = async (req, res) => {
 	// 		data: err,
 	// 	});
 	// }
+
+	// try {
+	// 	const { word } = req.body;
+	// 	const messages = await Message.sequelize.query(
+	// 		// `SELECT * FROM Messages WHERE title LIKE '%${word}%' OR title LIKE '${word}%' OR title LIKE '%${word}' OR body LIKE '%${word}%' OR body LIKE '${word}%' OR body LIKE '%${word}';`
+	// 		`SELECT * FROM Messages WHERE title LIKE '%dfd%'`
+	// 	);
+	// 	res.status(200).json({
+	// 		error: false,
+	// 		code: 200,
+	// 		message: `Messages containing "${word}" in their title`,
+	// 		data: messages,
+	// 	});
+	// } catch (err) {
+	// 	res.status(400).json({
+	// 		error: true,
+	// 		code: 400,
+	// 		message: 'Error finding messages',
+	// 		data: err,
+	// 	});
+	// }
+
+	try {
+		const { word } = req.body;
+		const messages = await Message.findAll({
+			where: {
+				// [Op.or]: [
+				// 	{ body: { [Op.substring]: `%${word}%` } },
+				// 	// { body: { [Op.substring]: `${word}%` } },
+				// 	// { body: { [Op.substring]: `%${word}` } },
+				// ],
+				body: {
+					[Op.substring]: `%${word}%`,
+				},
+			},
+		});
+		res.status(200).json({
+			error: false,
+			code: 200,
+			message: `Messages containing "${word}" in their body`,
+			data: messages,
+		});
+	} catch (err) {
+		res.status(400).json({
+			error: true,
+			code: 400,
+			message: 'Error finding messages',
+			data: err,
+		});
+	}
 };
 
 const updateMessage = async (req, res) => {
