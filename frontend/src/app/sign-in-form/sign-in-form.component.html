@@ -15,7 +15,9 @@
 			placeholder="example@email.com"
 			class="input-group"
 			required
+
 		/>
+		<p class="error-text">{{errorEmail}}</p>
 	</div>
 	<div class="flex flex-col">
 		<label
@@ -43,12 +45,15 @@
 			</button>
 		</div>
 	</div>
-	<div>
+	<div class="flex flex-col gap-1 justify-center items-center">
 		<input
 			type="submit"
 			value="SIGN IN"
-			[disabled]="!loginForm.valid"
+			
 			class="submit-login"
 		/>
+		<p class="error-text">
+			{{errorEmailOrPassword}}
+		</p>
 	</div>
 </form>

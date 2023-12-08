@@ -7,35 +7,39 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 	styleUrls: ['./sing-up-form.component.scss'],
 })
 export class SingUpFormComponent {
-	loginForm = new FormGroup({
-    fullName: new FormControl('', Validators.required),
-		email: new FormControl('', Validators.required),
-		password: new FormControl('', Validators.required),
-	});
-
-	email: string = '';
-
-	password: string = '';
-
+	// show/hide password
+	showPassword = false;
 	input = 'password';
 	input2 = 'password';
-
-	login2() {
-		alert(this.loginForm.value.email + ' | ' + this.loginForm.value.password);
-	}
-
-	showPassword = false;
 
 	toggleShow() {
 		this.showPassword = !this.showPassword;
 		this.input = this.showPassword ? 'text' : 'password';
 	}
-  
+
 	toggleShow2() {
 		this.showPassword = !this.showPassword;
 		this.input2 = this.showPassword ? 'text' : 'password';
 	}
 
+	// form validation
+
+	loginForm = new FormGroup({
+		fullName: new FormControl('', Validators.required),
+		email: new FormControl('', [
+			Validators.required,
+			Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
+		]),
+		password: new FormControl('', Validators.required),
+	});
+
+	fullName: string = '';
+	email: string = '';
+	password: string = '';
+
+	errorEmail = '';
+
+	@Output() fullNameSubmitted = new EventEmitter();
 	@Output() emailSubmitted = new EventEmitter();
 	@Output() passwordSubmitted = new EventEmitter();
 
@@ -43,11 +47,16 @@ export class SingUpFormComponent {
 		if (this.loginForm.valid) {
 			const email = this.loginForm.value.email;
 			this.emailSubmitted.emit(email);
-		}
-		if (this.loginForm.valid) {
+
 			const password = this.loginForm.value.password;
 			this.passwordSubmitted.emit(password);
+
+			console.log(this.loginForm.value);
+		} else {
+			const emailControl = this.loginForm.get('email');
+			if (emailControl && !emailControl.valid) {
+				this.errorEmail = 'Please provide a valid email';
+			}
 		}
-		console.log(this.loginForm.value);
 	}
 }
