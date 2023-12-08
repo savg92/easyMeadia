@@ -1,18 +1,23 @@
 <main class="flex flex-col items-center justify-center">
-
-    <app-welcome-image></app-welcome-image>
-    <div class="flex flex-col items-end">
-        <app-sign-in-form />
-        <span class="flex my-1">
-            <p class="signup-text">Don’t have an account? 
-                <span>
-                    <a routerLink="/sign-up" class="signup-text2">Sign up here</a>
-                </span>
-            </p>
-        </span>
-    </div>
-    <p>{{email}}</p>
-    <P>
-        {{password}}
-    </P>
+	<app-welcome-image [SectionText]="'Sign In'"></app-welcome-image>
+	<div class="flex flex-col items-end">
+		<app-sign-in-form />
+		<span class="flex my-1">
+			<p class="signup-text">
+				Don’t have an account?
+				<span>
+					<a
+						routerLink="/sign-up"
+						class="signup-text2"
+					>
+						Sign up here
+					</a>
+				</span>
+			</p>
+		</span>
+	</div>
+	<p>{{ email }}</p>
+	<P>
+		{{ password }}
+	</P>
 </main>

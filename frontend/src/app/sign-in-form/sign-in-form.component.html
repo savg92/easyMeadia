@@ -1,6 +1,7 @@
 <form
 	[formGroup]="loginForm"
 	(ngSubmit)="onSubmit()"
+	class="flex flex-col items-center justify-center gap-6"
 >
 	<div class="flex flex-col">
 		<label
@@ -13,6 +14,7 @@
 			formControlName="email"
 			placeholder="example@email.com"
 			class="input-group"
+			required
 		/>
 	</div>
 	<div class="flex flex-col">
@@ -21,21 +23,23 @@
 			class="label-form"
 			>Password</label
 		>
-		<div class="input-group">
+		<div class="input-group w-full">
 			<input
 				type="{{ input }}"
 				formControlName="password"
 				placeholder="······"
 				style="font-size: large"
 				id="password"
+				required
+				class="w-4/5"
 			/>
 			<button
 				type="button"
 				class="btn btn-outline-secondary"
 				(click)="toggleShow()"
-				class="btn-show"
+				class="btn-show ml-6"
 			>
-				<!-- <span class="eye"></span> -->
+				<span class="eye"></span>
 			</button>
 		</div>
 	</div>
