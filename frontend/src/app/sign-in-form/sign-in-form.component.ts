@@ -16,21 +16,12 @@ export class SignInFormComponent {
 	}
 
 	// form validation
-
 	loginForm = new FormGroup({
 		email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
 		password: new FormControl('', Validators.required),
 	});
 
-	email: string = '';
-	password: string = '';
-
-	
-
-	// login2() {
-	// 	alert(this.loginForm.value.email + ' | ' + this.loginForm.value.password);
-	// }
-
+	// send data to parent component?
 	@Output() emailSubmitted = new EventEmitter();
 	@Output() passwordSubmitted = new EventEmitter();
 
@@ -49,6 +40,7 @@ export class SignInFormComponent {
 
 			try{
 				this.loginForm.reset();
+				this.errorEmail = '';
 			}
 			catch(error){
 				console.log(error);

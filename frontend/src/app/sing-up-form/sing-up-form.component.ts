@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import {
+	AbstractControl,
+	FormGroup,
+	FormControl,
+	Validators,
+} from '@angular/forms';
 @Component({
 	selector: 'app-sing-up-form',
 	templateUrl: './sing-up-form.component.html',
@@ -23,19 +27,31 @@ export class SingUpFormComponent {
 	}
 
 	// form validation
+	passwordMatchValidator(control: AbstractControl) {
+		const g = control as FormGroup;
+		return g.get('password')?.value === g.get('confirmPassword')?.value
+			? null
+			: { mismatch: true };
+	}
 
-	loginForm = new FormGroup({
-		fullName: new FormControl('', Validators.required),
-		email: new FormControl('', [
-			Validators.required,
-			Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
-		]),
-		password: new FormControl('', Validators.required),
-	});
-
-	fullName: string = '';
-	email: string = '';
-	password: string = '';
+	loginForm = new FormGroup(
+		{
+			fullName: new FormControl('', Validators.required),
+			email: new FormControl('', [
+				Validators.required,
+				Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
+			]),
+			password: new FormControl('', [
+				Validators.required,
+				Validators.minLength(8),
+				Validators.pattern(
+					'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$'
+				),
+			]),
+			confirmPassword: new FormControl('', Validators.required),
+		},
+		{ validators: this.passwordMatchValidator }
+	);
 
 	errorEmail = '';
 
@@ -53,6 +69,9 @@ export class SingUpFormComponent {
 
 			console.log(this.loginForm.value);
 		} else {
+			if (this.loginForm.errors?.['mismatch']) {
+				alert('Passwords do not match');
+			}
 			const emailControl = this.loginForm.get('email');
 			if (emailControl && !emailControl.valid) {
 				this.errorEmail = 'Please provide a valid email';
