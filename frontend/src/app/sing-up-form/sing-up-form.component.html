@@ -1,1 +1,97 @@
-<p>sing-up-form works!</p>
+<form
+	[formGroup]="loginForm"
+	(ngSubmit)="onSubmit()"
+	class="flex flex-col items-center justify-center gap-6"
+>
+    <div class="flex flex-col">
+        <label
+            for="fullName"
+            class="label-form"
+        >
+            Full Name
+        </label>
+        <input
+            type="text"
+            formControlName="fullName"
+            placeholder="full Name"
+            class="input-group"
+            required
+        />
+    </div>
+	<div class="flex flex-col">
+		<label
+			for="email"
+			class="label-form"
+		>
+			Email
+		</label>
+		<input
+			type="email"
+			formControlName="email"
+			placeholder="example@email.com"
+			class="input-group"
+			required
+		/>
+	</div>
+	<div class="flex flex-col">
+		<label
+			for="password"
+			class="label-form"
+			>Password</label
+		>
+		<div class="input-group w-full">
+			<input
+				type="{{ input }}"
+				formControlName="password"
+				placeholder="······"
+				style="font-size: large"
+				id="password"
+				required
+				class="w-4/5"
+			/>
+			<button
+				type="button"
+				class="btn btn-outline-secondary"
+				(click)="toggleShow()"
+				class="btn-show ml-6"
+			>
+				<span class="eye"></span>
+			</button>
+		</div>
+	</div>
+    <div class="flex flex-col">
+        <label
+            for="confirmPassword"
+            class="label-form"
+        >
+            Confirm Password
+        </label>
+        <div class="input-group w-full">
+            <input
+                type="{{ input2 }}"
+                formControlName="confirmPassword"
+                placeholder="······"
+                style="font-size: large"
+                id="confirmPassword"
+                required
+                class="w-4/5"
+            />
+            <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="toggleShow2()"
+                class="btn-show ml-6"
+            >
+                <span class="eye"></span>
+            </button>
+        </div>
+    </div>
+	<div>
+		<input
+			type="submit"
+			value="SIGN UP"
+			[disabled]="!loginForm.valid"
+			class="submit-login"
+		/>
+	</div>
+</form>
