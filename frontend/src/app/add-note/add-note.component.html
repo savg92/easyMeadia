@@ -18,14 +18,15 @@
 		</div>
 		<div class="form-group flex flex-col">
 			<label for="text">Content</label>
-			<input
+			<textarea
 				type="text"
 				class="form-control"
 				id="text"
 				formControlName="text"
 				placeholder="Create message for share with your friends."
 				maxlength="300"
-			/>
+			>
+			</textarea>
 			<p class="text-create-note">{{ addNoteForm.value.text?.length }}/300</p>
 		</div>
 		<button

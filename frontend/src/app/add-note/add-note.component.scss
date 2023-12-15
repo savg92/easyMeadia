@@ -32,8 +32,14 @@ label{
     border: 1px solid #5F5E5E;
     background: #EBEBEB;
 
+    color: #474747;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+#title::placeholder{
     color: #B7B7B7;
-    font-family: Lato;
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
@@ -48,13 +54,20 @@ label{
     border: 1px solid #5F5E5E;
     background: #EBEBEB;
 
-    color: #B7B7B7;
-    font-family: Lato;
+    color: #474747;
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    text-align: start;
+
+    word-wrap: break-word;
+}
+#text::placeholder{
+    color: #B7B7B7;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .text-create-note{
