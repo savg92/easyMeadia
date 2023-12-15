@@ -24,6 +24,7 @@ import { AdminModule } from './admin/admin.module';
 import { LoginComponent } from './auth/login/login.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { NoteComponent } from './note/note.component';
 
 @NgModule({
 	declarations: [
@@ -40,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
 		SingUpComponent,
 		OtherComponent,
 		LoginComponent,
+  NoteComponent,
 	],
 	imports: [
 		BrowserModule,
