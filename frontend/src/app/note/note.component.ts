@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
 export class NoteComponent {
 	@Input() noteTitle?: string = '';
 	@Input() noteText?: string = '';
-	@Input() formattedDate?: string = '';
+	@Input() date?: string = '';
 	@Input() user?: string = '';
 }
