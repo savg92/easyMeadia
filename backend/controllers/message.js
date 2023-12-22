@@ -22,12 +22,12 @@ const createMessage = async (req, res) => {
 
 const getAllMessages = async (req, res) => {
 	try {
-		const message = await Message.findAll();
+		const messages = await Message.findAll();
 		res.status(200).json({
 			error: false,
 			code: 200,
 			message: 'List of Messages',
-			data: message,
+			data: messages,
 		});
 	} catch (err) {
 		res.status(400).json({
@@ -41,7 +41,7 @@ const getAllMessages = async (req, res) => {
 
 const getMessagesById = async (req, res) => {
 	try {
-		const message = await Message.findAll({
+		const messages = await Message.findAll({
 			where: {
 				UserId: req.params.id,
 			},
@@ -50,7 +50,7 @@ const getMessagesById = async (req, res) => {
 			error: false,
 			code: 200,
 			message: 'Messages by user',
-			data: message,
+			data: messages,
 		});
 	} catch (err) {
 		res.status(400).json({
