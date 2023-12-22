@@ -14,7 +14,7 @@
 		<li *ngFor="let note of notes">
 			<app-note
 				[noteTitle]="note.title"
-				[noteText]="note.text"
+				[noteText]="note.body"
 				[formattedDate]="note.date"
 				[user]="note.user"
 			></app-note>

@@ -5,12 +5,15 @@ import {
 	FormControl,
 	Validators,
 } from '@angular/forms';
+import { RegisterService } from '../services/register/register.service';
 @Component({
 	selector: 'app-sing-up-form',
 	templateUrl: './sing-up-form.component.html',
 	styleUrls: ['./sing-up-form.component.scss'],
 })
 export class SingUpFormComponent {
+	constructor(private registerService: RegisterService) {}
+
 	// show/hide password
 	showPassword = false;
 	input = 'password';
@@ -68,6 +71,15 @@ export class SingUpFormComponent {
 			this.passwordSubmitted.emit(password);
 
 			console.log(this.loginForm.value);
+
+			// this.registerService.register(this.loginForm.value).subscribe(
+			// 	(res) => {
+			// 		console.log(res);
+			// 	},
+			// 	(error) => {
+			// 		console.log(error);
+			// 	}
+			// );
 		} else {
 			if (this.loginForm.errors?.['mismatch']) {
 				alert('Passwords do not match');

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../services/login/login.service';
 
 @Component({
 	selector: 'app-sign-in-form',
@@ -7,6 +8,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 	styleUrls: ['./sign-in-form.component.scss'],
 })
 export class SignInFormComponent {
+	constructor(private loginService: LoginService) {}
+
 	// show/hide password
 	showPassword = false;
 	input = 'password';
@@ -17,7 +20,10 @@ export class SignInFormComponent {
 
 	// form validation
 	loginForm = new FormGroup({
-		email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
+		email: new FormControl('', [
+			Validators.required,
+			Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
+		]),
 		password: new FormControl('', Validators.required),
 	});
 
@@ -36,15 +42,25 @@ export class SignInFormComponent {
 			const password = this.loginForm.value.password;
 			this.passwordSubmitted.emit(password);
 
-			console.log(this.loginForm.value);
+			// console.log(this.loginForm.value);
 
-			try{
+			try {
+				this.loginService.login(this.loginForm.value).subscribe(
+					(res: any) => {
+					localStorage.setItem('token', res.token);
+					console.log(res);
+				},
+					(error) => {
+						console.log(error);
+						this.errorEmailOrPassword = 'Invalid email or password';
+					}
+				);
+
 				this.loginForm.reset();
 				this.errorEmail = '';
-			}
-			catch(error){
+			} catch (error) {
 				console.log(error);
-				this.errorEmailOrPassword = 'Invalid email or password'
+				this.errorEmailOrPassword = 'Invalid email or password';
 			}
 		} else {
 			const emailControl = this.loginForm.get('email');
