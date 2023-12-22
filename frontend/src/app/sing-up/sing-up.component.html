@@ -1,14 +1,20 @@
 <main class="flex flex-col items-center justify-center">
-    <app-welcome-image [SectionText]="'Sign Up'"></app-welcome-image>   
+	<app-welcome-image [SectionText]="'Sign Up'"></app-welcome-image>
 
-    <div class="flex flex-col items-end">
-        <app-sing-up-form />
-        <div class="flex my-1">
-            <p class="login-text">Already have an account? 
-                <span>
-                    <a class="login-text2" (click)="navigate()">Login</a>
-                </span>
-            </p>
-        </div>
-    </div>
+	<div class="flex flex-col items-end">
+		<app-sing-up-form />
+		<div class="flex my-1">
+			<p class="login-text">
+				Already have an account?
+				<span>
+					<a
+						routerLink="/login"
+						class="login-text2"
+					>
+						Login
+					</a>
+				</span>
+			</p>
+		</div>
+	</div>
 </main>
