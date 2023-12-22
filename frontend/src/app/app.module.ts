@@ -15,7 +15,7 @@ import { WelcomeImageComponent } from './welcome-image/welcome-image.component';
 import { AddNoteComponent } from './add-note/add-note.component';
 import { NotesListComponent } from './notes-list/notes-list.component';
 import { FormComponent } from './form/form.component';
-import { NoteDetailComponent } from './note-detail/note-detail.component';
+// import { NoteDetailComponent } from './note-detail/note-detail.component';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
 import { SingUpFormComponent } from './sing-up-form/sing-up-form.component';
@@ -29,7 +29,7 @@ import { NoteComponent } from './note/note.component';
 
 import { RegisterService } from './services/register/register.service';
 import { LoginService } from './services/login/login.service';
-import { AllMessagesService } from './services/allMessages/all-messages.service';
+import { AllMessagesService } from './services/allPublications/all-messages.service';
 
 @NgModule({
 	declarations: [
@@ -39,7 +39,7 @@ import { AllMessagesService } from './services/allMessages/all-messages.service'
 		NotesListComponent,
 		FormComponent,
 		AddNoteComponent,
-		NoteDetailComponent,
+		// NoteDetailComponent,
 		WelcomeImageComponent,
 		SignInFormComponent,
 		SingUpFormComponent,
