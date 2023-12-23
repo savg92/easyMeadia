@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NOTES } from 'src/notes';
-import { AllMessagesService } from '../../services/allPublications/all-messages.service';
+import { AllMessagesService } from '../../services/allMessages/all-messages.service';
 
 @Component({
 	selector: 'app-notes-list',

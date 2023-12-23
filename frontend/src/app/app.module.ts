@@ -20,7 +20,6 @@ import { SignInFormComponent } from './components/sign-in-form/sign-in-form.comp
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { SingUpFormComponent } from './components/sing-up-form/sing-up-form.component';
 import { OtherComponent } from './other/other.component';
-// import { SingInComponent } from './sing-in/sing-in.component';
 
 import { AdminModule } from './admin/admin.module';
 import { LoginComponent } from './pages/login/login.component';
@@ -29,7 +28,8 @@ import { NoteComponent } from './components/note/note.component';
 
 import { RegisterService } from './services/register/register.service';
 import { LoginService } from './services/login/login.service';
-import { AllMessagesService } from './services/allPublications/all-messages.service';
+import { AllMessagesService } from './services/allMessages/all-messages.service';
+import { AddMessageService } from './services/addMessage/add-message.service';
 
 @NgModule({
 	declarations: [
@@ -39,7 +39,6 @@ import { AllMessagesService } from './services/allPublications/all-messages.serv
 		NotesListComponent,
 		FormComponent,
 		AddNoteComponent,
-		// NoteDetailComponent,
 		WelcomeImageComponent,
 		SignInFormComponent,
 		SingUpFormComponent,
@@ -57,7 +56,12 @@ import { AllMessagesService } from './services/allPublications/all-messages.serv
 		AdminModule,
 		HttpClientModule,
 	],
-	providers: [RegisterService, LoginService, AllMessagesService],
+	providers: [
+		RegisterService,
+		LoginService,
+		AllMessagesService,
+		AddMessageService,
+	],
 	bootstrap: [AppComponent],
 	exports: [RouterModule],
 })

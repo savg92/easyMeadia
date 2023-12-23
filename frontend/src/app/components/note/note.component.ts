@@ -16,8 +16,11 @@ export class NoteComponent implements OnInit {
 	constructor(private datePipe: DatePipe) {}
 
 	ngOnInit(): void {
-		if (this.date) {
-			const transformedDate = this.datePipe.transform(new Date(this.date), 'dd-MM-yyyy');
+		if (this.date && !isNaN(Date.parse(this.date))) {
+			const transformedDate = this.datePipe.transform(
+				new Date(this.date),
+				'h:mm a dd-MM-yy'
+			);
 			this.date = transformedDate ? transformedDate : this.date;
 		}
 	}

@@ -3,7 +3,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotesListComponent } from './pages/notes-list/notes-list.component';
 import { FormComponent } from './components/form/form.component';
 import { AddNoteComponent } from './pages/add-note/add-note.component';
-// import { NoteDetailComponent } from './note-detail/note-detail.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login/login.component';
 
