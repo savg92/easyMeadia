@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NOTES } from '../../../notes';
 import { Router } from '@angular/router';
+import { AddMessageService } from 'src/app/services/addMessage/add-message.service';
 
 @Component({
 	selector: 'app-add-note',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 	styleUrls: ['./add-note.component.scss'],
 })
 export class AddNoteComponent {
+	constructor(private addMessageService: AddMessageService) {}
+
 	noteTitle = 'Your post title';
 	noteText = 'Create message for share with your friends.';
 	// time and short date
@@ -53,9 +56,23 @@ export class AddNoteComponent {
 			let newNote = {
 				id: maxId + 1,
 				title: title,
-				text: text,
+				body: text,
 			};
 			NOTES.unshift(newNote);
+			console.log(NOTES);
+			try {
+				this.addMessageService.addMessage(this.addNoteForm.value).subscribe(
+					(res: any) => {
+						console.log(res);
+					},
+					(error) => {
+						console.log(error);
+					}
+				);
+			}
+			catch (error) {
+				console.log(error);
+			}
 			this.addNoteForm.reset();
 			this.router.navigateByUrl('/notes-list');
 		}
