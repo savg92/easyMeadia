@@ -1,0 +1,15 @@
+<main class="flex flex-col items-center justify-center gap-4">
+	<h1>My Publications</h1>
+
+	<ul class="flex flex-col items-center justify-center gap-4">
+		<li *ngFor="let note of notes">
+			<app-note
+				[noteTitle]="note.title"
+				[noteText]="note.body"
+				[date]="note.updatedAt"
+				[user]="note.User?.name"
+			></app-note>
+		</li>
+	</ul>
+	<button routerLink="">Home</button>
+</main>

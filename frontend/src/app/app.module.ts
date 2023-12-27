@@ -30,6 +30,7 @@ import { RegisterService } from './services/register/register.service';
 import { LoginService } from './services/login/login.service';
 import { AllMessagesService } from './services/allMessages/all-messages.service';
 import { AddMessageService } from './services/addMessage/add-message.service';
+import { MyMessagesComponent } from './components/my-messages/my-messages.component';
 
 @NgModule({
 	declarations: [
@@ -46,6 +47,7 @@ import { AddMessageService } from './services/addMessage/add-message.service';
 		OtherComponent,
 		LoginComponent,
 		NoteComponent,
+		MyMessagesComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -61,6 +63,7 @@ import { AddMessageService } from './services/addMessage/add-message.service';
 		LoginService,
 		AllMessagesService,
 		AddMessageService,
+		AllMessagesService,
 	],
 	bootstrap: [AppComponent],
 	exports: [RouterModule],
