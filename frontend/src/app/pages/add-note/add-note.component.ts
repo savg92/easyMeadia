@@ -71,7 +71,9 @@ export class AddNoteComponent {
 			try {
 				this.addMessageService.addMessage(newNote).subscribe(
 					(res: any) => {
-						console.log(res);
+						// console.log(res);
+						this.addNoteForm.reset();
+						this.router.navigateByUrl('/notes');
 					},
 					(error) => {
 						console.log(error);
@@ -82,8 +84,6 @@ export class AddNoteComponent {
 				console.log(error);
 			}
 
-			this.addNoteForm.reset();
-			this.router.navigateByUrl('/notes');
 		}
 	}
 }

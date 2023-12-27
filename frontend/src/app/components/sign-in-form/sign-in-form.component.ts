@@ -52,7 +52,7 @@ export class SignInFormComponent {
 				this.loginService.login(this.loginForm.value).subscribe(
 					(res: any) => {
 					localStorage.setItem('token', res.token);
-					console.log(res);
+					// console.log(res);
 				},
 					(error) => {
 						console.log(error);
