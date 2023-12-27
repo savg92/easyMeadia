@@ -54,14 +54,15 @@ export class AddNoteComponent {
 				maxId = Math.max(...ids);
 			}
 			let newNote = {
-				id: maxId + 1,
+				// id: maxId + 1,
 				title: title,
 				body: text,
+				UserId: 1,
 			};
-			NOTES.unshift(newNote);
-			console.log(NOTES);
+			// NOTES.unshift(newNote);
+			// console.log(NOTES);
 			try {
-				this.addMessageService.addMessage(this.addNoteForm.value).subscribe(
+				this.addMessageService.addMessage(newNote).subscribe(
 					(res: any) => {
 						console.log(res);
 					},
