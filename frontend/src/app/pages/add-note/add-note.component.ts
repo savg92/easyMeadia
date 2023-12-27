@@ -3,7 +3,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NOTES } from '../../../notes';
 import { Router } from '@angular/router';
 import { AddMessageService } from 'src/app/services/addMessage/add-message.service';
+import { jwtDecode } from 'jwt-decode';
 
+type JwtPayload = {
+	iat: number;
+	exp: number;
+	data: {
+		id: number;
+		type: string;
+	};
+};
 @Component({
 	selector: 'app-add-note',
 	templateUrl: './add-note.component.html',
@@ -14,6 +23,7 @@ export class AddNoteComponent {
 
 	noteTitle = 'Your post title';
 	noteText = 'Create message for share with your friends.';
+
 	// time and short date
 	date = new Date();
 	formattedDate =
@@ -31,36 +41,32 @@ export class AddNoteComponent {
 			})
 			.replace(/\//g, '-');
 
+	// user name
 	user = 'User';
 
+	// form validation
 	addNoteForm = new FormGroup({
 		title: new FormControl('', Validators.required),
 		text: new FormControl(''),
 	});
 
-	onSubmit() {
-		alert(this.addNoteForm.value.title + ' | ' + this.addNoteForm.value.text);
-	}
+	// decode token for get user id
+	private decoded = jwtDecode<JwtPayload>(localStorage.getItem('token') ?? '');
 
+	// router for redirect
 	router = inject(Router);
+
 	addNote() {
 		let title = this.addNoteForm.value.title ?? '';
 		let text = this.addNoteForm.value.text ?? '';
 
 		if (this.addNoteForm.valid) {
-			let ids = NOTES.map((a) => a.id);
-			let maxId = 0;
-			if (ids.length > 0) {
-				maxId = Math.max(...ids);
-			}
 			let newNote = {
-				// id: maxId + 1,
 				title: title,
 				body: text,
-				UserId: 1,
+				UserId: this.decoded.data.id,
 			};
-			// NOTES.unshift(newNote);
-			// console.log(NOTES);
+
 			try {
 				this.addMessageService.addMessage(newNote).subscribe(
 					(res: any) => {
@@ -68,14 +74,15 @@ export class AddNoteComponent {
 					},
 					(error) => {
 						console.log(error);
+						console.log(newNote);
 					}
 				);
-			}
-			catch (error) {
+			} catch (error) {
 				console.log(error);
 			}
+
 			this.addNoteForm.reset();
-			this.router.navigateByUrl('/notes-list');
+			this.router.navigateByUrl('/notes');
 		}
 	}
 }

@@ -14,11 +14,15 @@ export class AddMessageService {
 		return this.http.post<any>(
 			this.api_url,
 			{
+				title: messageData.title,
+				body: messageData.body,
+				UserId: messageData.UserId,
+			},
+			{
 				headers: {
 					Authorization: `Bearer ${this.token}`,
 				},
-			},
-			messageData
+			}
 		);
 	}
 

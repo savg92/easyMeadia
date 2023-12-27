@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+type JwtPayload = {
+	iat: number;
+	exp: number;
+	data: {
+		id: number;
+		type: string;
+	};
+};
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

@@ -10,7 +10,11 @@ export class RegisterService {
 	constructor(private http: HttpClient) {}
 
 	register(userData: any) {
-		return this.http.post<any>(this.api_url, userData);
+		return this.http.post<any>(this.api_url, {
+			name: userData.name,
+			email: userData.email,
+			password: userData.password,
+		});
 	}
 
 	error(error: HttpErrorResponse) {
