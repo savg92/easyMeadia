@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../../services/login/login.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
 	selector: 'app-sign-in-form',
@@ -54,7 +54,7 @@ export class SignInFormComponent {
 					localStorage.setItem('token', res.token);
 					// console.log(res);
 				},
-					(error) => {
+					(error: any) => {
 						console.log(error);
 						this.errorEmailOrPassword = 'Invalid email or password';
 					}
@@ -64,7 +64,7 @@ export class SignInFormComponent {
 				this.errorEmail = '';
 				this.errorEmailOrPassword = '';
 				this.router.navigateByUrl('/add-note');
-			} catch (error) {
+			} catch (error: any) {
 				console.log(error);
 				this.errorEmailOrPassword = 'Invalid email or password';
 			}
