@@ -17,7 +17,15 @@ type JwtPayload = {
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-	constructor(public router: Router) {}
+	private decoded: JwtPayload | null = null;
+
+	constructor(public router: Router) {
+		const token = localStorage.getItem('token');
+		if (token && token.split('.').length === 3) {
+			this.decoded = jwtDecode<JwtPayload>(token);
+		}
+	}
+
 	menuOpen = false;
 	user = '';
 
@@ -25,11 +33,11 @@ export class HeaderComponent {
 		localStorage.removeItem('token');
 	}
   
-  // decode token for get user id
-  private	decoded = jwtDecode<JwtPayload>(localStorage.getItem('token') ?? '');
 
-  ngOnInit(): void {
-    this.user = this.decoded.data.name;
-  }
+	ngOnInit(): void {
+		if (this.decoded) {
+			this.user = this.decoded.data.name;
+		}
+	}
 
 }

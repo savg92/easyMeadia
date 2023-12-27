@@ -39,6 +39,7 @@ export class SignInFormComponent {
 	errorEmailOrPassword = '';
 
 	onSubmit() {
+		
 		if (this.loginForm.valid) {
 			const email = this.loginForm.value.email;
 			this.emailSubmitted.emit(email);
@@ -53,17 +54,21 @@ export class SignInFormComponent {
 					(res: any) => {
 					localStorage.setItem('token', res.token);
 					// console.log(res);
+					this.loginForm.reset();
+					this.errorEmail = '';
+					this.errorEmailOrPassword = '';
+					this.router.navigateByUrl('/add-note');
 				},
 					(error: any) => {
-						console.log(error);
+						// console.log(error);
+
+
+						
+						// ? fix prevent default
 						this.errorEmailOrPassword = 'Invalid email or password';
 					}
 				);
 
-				this.loginForm.reset();
-				this.errorEmail = '';
-				this.errorEmailOrPassword = '';
-				this.router.navigateByUrl('/add-note');
 			} catch (error: any) {
 				console.log(error);
 				this.errorEmailOrPassword = 'Invalid email or password';
