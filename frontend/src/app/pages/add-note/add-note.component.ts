@@ -10,6 +10,7 @@ type JwtPayload = {
 	exp: number;
 	data: {
 		id: number;
+		name: string;
 		type: string;
 	};
 };
