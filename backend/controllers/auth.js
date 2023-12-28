@@ -62,7 +62,6 @@ const logOut = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-	// if(req.auth.data.type === 'Admin') {
 	const hash = bcrypt.hashSync(req.body.password, 10);
 	try {
 		const email = await User.findOne({ where: { email: req.body.email } });
@@ -101,13 +100,6 @@ const createUser = async (req, res) => {
 			answer: err,
 		});
 	}
-	// } else if(req.auth.data.type === 'User') {
-	//   res.status(401).json({
-	//     error: true,
-	//     code: 401,
-	//     message: 'No autorizado para crear usuario',
-	//   });
-	// }
 };
 
 module.exports = { loginUsers, logOut, createUser };

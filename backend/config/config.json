@@ -14,7 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": process.env.DB_USER,
+    "username": "root",
     "password": "null",
     "database": "data_warehouse",
     "host": "127.0.0.1",
