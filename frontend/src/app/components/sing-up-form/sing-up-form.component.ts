@@ -46,10 +46,10 @@ export class SingUpFormComponent {
 			]),
 			password: new FormControl('', [
 				Validators.required,
-				Validators.minLength(8),
-				Validators.pattern(
-					'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$'
-				),
+				// Validators.minLength(8),
+				// Validators.pattern(
+				// 	'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$'
+				// ),
 			]),
 			confirmPassword: new FormControl('', Validators.required),
 		},
@@ -72,14 +72,14 @@ export class SingUpFormComponent {
 
 			console.log(this.loginForm.value);
 
-			// this.registerService.register(this.loginForm.value).subscribe(
-			// 	(res) => {
-			// 		console.log(res);
-			// 	},
-			// 	(error) => {
-			// 		console.log(error);
-			// 	}
-			// );
+			this.registerService.register(this.loginForm.value).subscribe(
+				(res) => {
+					console.log(res);
+				},
+				(error) => {
+					console.log(error);
+				}
+			);
 		} else {
 			if (this.loginForm.errors?.['mismatch']) {
 				alert('Passwords do not match');

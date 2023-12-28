@@ -11,7 +11,7 @@ export class RegisterService {
 
 	register(userData: any) {
 		return this.http.post<any>(this.api_url, {
-			name: userData.name,
+			name: userData.fullName,
 			email: userData.email,
 			password: userData.password,
 		});
