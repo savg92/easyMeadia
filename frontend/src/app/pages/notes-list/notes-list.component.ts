@@ -10,6 +10,7 @@ import { AllMessagesService } from '../../services/allMessages/all-messages.serv
 export class NotesListComponent {
 	constructor(private allMessages: AllMessagesService) {}
 	notes = NOTES;
+	search = '';
 
 	ngOnInit(): void {
 		this.allMessages.getAllMessages().subscribe(
@@ -20,5 +21,19 @@ export class NotesListComponent {
 				console.log(error);
 			}
 		);
+	}
+
+	// search notes, filter by title or body text (case insensitive) and show results
+	searchNotes() {
+		if (this.search) {
+			this.notes = this.notes.filter((note) => {
+				return (
+					note.title?.toLowerCase().includes(this.search.toLowerCase()) ||
+					note.body?.toLowerCase().includes(this.search.toLowerCase())
+				);
+			});
+		} else {
+			this.ngOnInit();
+		}
 	}
 }
