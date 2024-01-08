@@ -11,6 +11,7 @@ export class MyMessagesComponent {
 	constructor(private messagesByIdService: MessagesByIdService) {}
 
 	notes = NOTES;
+	search = '';
 
 	ngOnInit(): void {
 		this.messagesByIdService.getMessagesById().subscribe(
@@ -21,5 +22,19 @@ export class MyMessagesComponent {
 				console.log(error);
 			}
 		);
+	}
+
+	// search notes, filter by title or body text (case insensitive) and show results
+	searchNotes() {
+		if (this.search) {
+			this.notes = this.notes.filter((note) => {
+				return (
+					note.title?.toLowerCase().includes(this.search.toLowerCase()) ||
+					note.body?.toLowerCase().includes(this.search.toLowerCase())
+				);
+			});
+		} else {
+			this.ngOnInit();
+		}
 	}
 }

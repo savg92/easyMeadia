@@ -27,7 +27,7 @@ export class HeaderComponent {
 	}
 
 	menuOpen = false;
-	user = '';
+	user = 'User';
 
 	logout() {
 		localStorage.removeItem('token');

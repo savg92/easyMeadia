@@ -5,7 +5,7 @@ import { FormComponent } from './components/form/form.component';
 import { AddNoteComponent } from './pages/add-note/add-note.component';
 import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { LoginComponent } from './pages/login/login.component';
-import { MyMessagesComponent } from './components/my-messages/my-messages.component';
+import { MyMessagesComponent } from './pages/my-messages/my-messages.component';
 
 const routeConfig: Routes = [
 	{ path: '', redirectTo: 'home', pathMatch: 'full' },

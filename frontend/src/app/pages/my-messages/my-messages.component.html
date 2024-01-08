@@ -1,6 +1,16 @@
 <main class="flex flex-col items-center justify-center gap-4">
 	<h1>My Publications</h1>
 
+	<div>
+		<input
+			type="text"
+			placeholder="Search"
+			class="input-group w-full rounded-md border-gray-300 border-2"
+			[(ngModel)]="search"
+			onChange="searchNotes()"
+		/>
+	</div>
+
 	<ul class="flex flex-col items-center justify-center gap-4">
 		<li *ngFor="let note of notes">
 			<app-note
