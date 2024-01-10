@@ -4,7 +4,7 @@ const { APP_KEY } = process.env;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-/* loginUsers: Función que permite a un usuario loguearse en la aplicación. */
+// loginUsers: Function that allows a user to log in to the application.
 const loginUsers = async (req, res) => {
 	const { email, password } = req.body;
 	let query = {};
@@ -48,7 +48,8 @@ const loginUsers = async (req, res) => {
 		.json({ message: `Welcome ${user.name}!`, token: tkn });
 };
 
-/* logOut: Función que permite a un usuario cerrar sesión en la aplicación. */
+
+// logOut: Function that allows a user to log out of the application.
 const logOut = async (req, res) => {
 	const tkn = jwt.sign(
 		{ exp: Math.floor(Date.now() / 1000) + 1, data: null },
