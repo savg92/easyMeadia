@@ -27,11 +27,13 @@ export class NotesListComponent {
 	searchNotes() {
 		if (this.search) {
 			this.notes = this.notes.filter((note) => {
+				
 				return (
 					note.title?.toLowerCase().includes(this.search.toLowerCase()) ||
 					note.body?.toLowerCase().includes(this.search.toLowerCase())
 				);
 			});
+			console.log(this.notes);
 		} else {
 			this.ngOnInit();
 		}
