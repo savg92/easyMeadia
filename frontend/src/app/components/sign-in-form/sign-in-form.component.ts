@@ -53,6 +53,7 @@ export class SignInFormComponent {
 				this.loginService.login(this.loginForm.value).subscribe(
 					(res: any) => {
 					localStorage.setItem('token', res.token);
+					// document.cookie = `token=${res.token}; path=/; SameSite=Strict; Secure; HttpOnly; max-age=1800`;
 					console.log(res);
 					this.loginForm.reset();
 					this.errorEmail = '';

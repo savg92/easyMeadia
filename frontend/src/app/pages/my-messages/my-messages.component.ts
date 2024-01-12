@@ -17,6 +17,7 @@ export class MyMessagesComponent {
 		this.messagesByIdService.getMessagesById().subscribe(
 			(res: any) => {
 				this.notes = res.data;
+				this.checkCookie();
 			},
 			(error) => {
 				console.log(error);
@@ -36,5 +37,17 @@ export class MyMessagesComponent {
 		} else {
 			this.ngOnInit();
 		}
+	}
+
+	checkCookie() {
+		const token = this.getCookie('token');
+		console.log(token);
+	}
+
+	getCookie(name: string) {
+		const value = `; ${document.cookie}`;
+		const parts = value.split(`; ${name}=`);
+		if (parts.length === 2) return parts.pop()?.split(';').shift();
+		return undefined; // or return '';
 	}
 }
