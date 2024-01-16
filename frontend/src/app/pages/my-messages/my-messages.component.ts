@@ -9,15 +9,12 @@ import { NOTES } from 'src/notes';
 })
 export class MyMessagesComponent {
 	constructor(private messagesByIdService: MessagesByIdService) {}
-
-	notes = NOTES;
-	search = '';
-
+	
 	ngOnInit(): void {
 		this.messagesByIdService.getMessagesById().subscribe(
 			(res: any) => {
 				this.notes = res.data;
-				this.checkCookie();
+				// this.checkCookie();
 			},
 			(error) => {
 				console.log(error);
@@ -25,29 +22,37 @@ export class MyMessagesComponent {
 		);
 	}
 
-	// search notes, filter by title or body text (case insensitive) and show results
-	searchNotes() {
-		if (this.search) {
+	notes = NOTES;
+	search = '';
+	searchDate = '';
+
+	// search notes, filter by date and show results
+	searchNotesByDate() {
+		if (this.searchDate) {
+			const searchDate = new Date(this.searchDate as string); // assert this.searchDate as string
+
+			const searchDateString = `${searchDate.getUTCFullYear()}-${(
+				'0' +
+				(searchDate.getUTCMonth() + 1)
+			).slice(-2)}-${('0' + searchDate.getUTCDate()).slice(-2)}`;
+
 			this.notes = this.notes.filter((note) => {
-				return (
-					note.title?.toLowerCase().includes(this.search.toLowerCase()) ||
-					note.body?.toLowerCase().includes(this.search.toLowerCase())
+				const noteDate = new Date(note.updatedAt as string); // create a new Date object from updatedAt
+
+				// adjust the noteDate by the timezone offset
+				noteDate.setMinutes(
+					noteDate.getMinutes() - noteDate.getTimezoneOffset()
 				);
+
+				const noteDateString = `${noteDate.getUTCFullYear()}-${(
+					'0' +
+					(noteDate.getUTCMonth() + 1)
+				).slice(-2)}-${('0' + noteDate.getUTCDate()).slice(-2)}`;
+
+				return noteDateString === searchDateString;
 			});
 		} else {
 			this.ngOnInit();
 		}
-	}
-
-	checkCookie() {
-		const token = this.getCookie('token');
-		console.log(token);
-	}
-
-	getCookie(name: string) {
-		const value = `; ${document.cookie}`;
-		const parts = value.split(`; ${name}=`);
-		if (parts.length === 2) return parts.pop()?.split(';').shift();
-		return undefined; // or return '';
 	}
 }
