@@ -3,22 +3,22 @@
 	(ngSubmit)="onSubmit()"
 	class="flex flex-col items-center justify-center gap-6"
 >
-    <div class="flex flex-col">
-        <label
-            for="fullName"
-            class="label-form"
-        >
-            Full Name
-        </label>
-        <input
-            type="text"
-            formControlName="fullName"
-            placeholder="full Name"
-            class="input-group"
-            required
-        />
+	<div class="flex flex-col">
+		<label
+			for="fullName"
+			class="label-form"
+		>
+			Full Name
+		</label>
+		<input
+			type="text"
+			formControlName="fullName"
+			placeholder="full Name"
+			class="input-group"
+			required
+		/>
 		<p class="error-text">{{ errorFullName }}</p>
-    </div>
+	</div>
 	<div class="flex flex-col">
 		<label
 			for="email"
@@ -33,7 +33,7 @@
 			class="input-group"
 			required
 		/>
-        <p class="error-text">{{ errorEmail }}</p>
+		<p class="error-text">{{ errorEmail }}</p>
 	</div>
 	<div class="flex flex-col">
 		<label
@@ -41,8 +41,7 @@
 			class="label-form"
 		>
 			Password
-		</label
-		>
+		</label>
 		<div class="input-group w-full">
 			<input
 				type="{{ input }}"
@@ -68,43 +67,44 @@
 			<p class="error-text">{{ errorPassword }}</p>
 		</div>
 	</div>
-    <div class="flex flex-col">
-        <label
-            for="confirmPassword"
-            class="label-form"
-        >
-            Confirm Password
-        </label>
-        <div class="input-group w-full">
-            <input
-                type="{{ input2 }}"
-                formControlName="confirmPassword"
-                placeholder="······"
-                style="font-size: large"
-                id="confirmPassword"
-                required
-                class="w-4/5"
-            />
-            <button
-                type="button"
-                class="btn btn-outline-secondary"
-                (click)="toggleShow2()"
-                class="btn-show ml-6"
-            >
-                <img
+	<div class="flex flex-col">
+		<label
+			for="confirmPassword"
+			class="label-form"
+		>
+			Confirm Password
+		</label>
+		<div class="input-group w-full">
+			<input
+				type="{{ input2 }}"
+				formControlName="confirmPassword"
+				placeholder="······"
+				style="font-size: large"
+				id="confirmPassword"
+				required
+				class="w-4/5"
+			/>
+			<button
+				type="button"
+				class="btn btn-outline-secondary"
+				(click)="toggleShow2()"
+				class="btn-show ml-6"
+			>
+				<img
 					src="../../../assets/eye.svg"
 					alt="eye"
 					class="eye w-5 h-5"
 				/>
-            </button>
+			</button>
 			<p class="error-text">{{ errorConfirmPassword }}</p>
-        </div>
-    </div>
+		</div>
+	</div>
 	<div>
 		<input
 			type="submit"
 			value="SIGN UP"
 			class="submit-login"
 		/>
+		<p class="error-text">{{ errorSignUp }}</p>
 	</div>
 </form>

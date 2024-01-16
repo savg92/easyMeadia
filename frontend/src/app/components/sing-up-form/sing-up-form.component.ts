@@ -68,6 +68,7 @@ export class SingUpFormComponent {
 	errorEmail = '';
 	errorPassword = '';
 	errorConfirmPassword = '';
+	errorSignUp = '';
 
 	@Output() fullNameSubmitted = new EventEmitter();
 	@Output() emailSubmitted = new EventEmitter();
@@ -106,6 +107,7 @@ export class SingUpFormComponent {
 				},
 				(error) => {
 					console.log(error);
+					this.errorSignUp = 'An error occured, please try again later';
 				}
 			);
 		} else {
