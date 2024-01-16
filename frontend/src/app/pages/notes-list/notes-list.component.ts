@@ -27,12 +27,36 @@ export class NotesListComponent {
 
 
 	// search notes, filter by title or body text (case insensitive) and show results
-	searchNotes() {
-		if (this.search) {
+	// searchNotesByTitle() {
+	// 	if (this.search) {
+	// 		this.notes = this.notes.filter((note) => {
+	// 			return (
+	// 				note.title?.toLowerCase().includes(this.search.toLowerCase()) ||
+	// 				note.body?.toLowerCase().includes(this.search.toLowerCase())
+	// 			);
+	// 		});
+	// 	} else {
+	// 		this.ngOnInit();
+	// 	}
+	// }
+	searchNotes() {		
+		if (this.search || this.searchDate) {
+			let searchDateString = '';
+			if (this.searchDate) {
+				const searchDate = new Date(this.searchDate as string); // assert this.searchDate as string
+				searchDateString = `${searchDate.getUTCFullYear()}-${('0' + (searchDate.getUTCMonth() + 1)).slice(-2)}-${('0' + searchDate.getUTCDate()).slice(-2)}`;
+			}
+
 			this.notes = this.notes.filter((note) => {
+				const noteDate = new Date(note.updatedAt as string); // create a new Date object from updatedAt
+				// adjust the noteDate by the timezone offset
+				noteDate.setMinutes(noteDate.getMinutes() - noteDate.getTimezoneOffset());
+				const noteDateString = `${noteDate.getUTCFullYear()}-${('0' + (noteDate.getUTCMonth() + 1)).slice(-2)}-${('0' + noteDate.getUTCDate()).slice(-2)}`;
+
 				return (
-					note.title?.toLowerCase().includes(this.search.toLowerCase()) ||
-					note.body?.toLowerCase().includes(this.search.toLowerCase())
+					(note.title?.toLowerCase().includes(this.search.toLowerCase()) ||
+					note.body?.toLowerCase().includes(this.search.toLowerCase())) &&
+					(!this.searchDate || noteDateString === searchDateString)
 				);
 			});
 		} else {
@@ -61,4 +85,6 @@ export class NotesListComponent {
 			this.ngOnInit();
 		}
 	}
+
+
 }
