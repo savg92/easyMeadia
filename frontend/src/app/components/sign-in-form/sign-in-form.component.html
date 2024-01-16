@@ -1,6 +1,6 @@
 <form
 	[formGroup]="loginForm"
-	(ngSubmit)="onSubmit()"
+	(ngSubmit)="onSubmit($event)"
 	class="flex flex-col items-center justify-center gap-6"
 >
 	<div class="flex flex-col">
@@ -48,12 +48,12 @@
 				/>
 			</button>
 		</div>
+		<p class="error-text">{{errorPassword}}</p>
 	</div>
 	<div class="flex flex-col gap-1 justify-center items-center">
 		<input
 			type="submit"
 			value="SIGN IN"
-			
 			class="submit-login hover:cursor-pointer"
 		/>
 		<p class="error-text">

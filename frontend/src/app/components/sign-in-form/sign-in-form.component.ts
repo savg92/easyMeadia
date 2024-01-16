@@ -36,10 +36,12 @@ export class SignInFormComponent {
 	@Output() passwordSubmitted = new EventEmitter();
 
 	errorEmail = '';
+	errorPassword = '';
 	errorEmailOrPassword = '';
 
-	onSubmit() {
-		
+	onSubmit(event: Event) {
+		event.preventDefault();
+
 		if (this.loginForm.valid) {
 			const email = this.loginForm.value.email;
 			this.emailSubmitted.emit(email);
@@ -52,34 +54,32 @@ export class SignInFormComponent {
 			try {
 				this.loginService.login(this.loginForm.value).subscribe(
 					(res: any) => {
-					document.cookie = `token=${res.token}; path=/; SameSite=Strict; Secure; HttpOnly; max-age=1800`;
-					localStorage.setItem('token', res.token);
-					console.log(res);
+						if (!res.error) {
+							document.cookie = `token=${res.token}; path=/; SameSite=Strict; Secure; HttpOnly; max-age=1800`;
+							localStorage.setItem('token', res.token);
+							console.log(res);
 
-					this.loginForm.reset();
-					this.errorEmail = '';
-					this.errorEmailOrPassword = '';
-					this.router.navigateByUrl('/add-note');
-				},
-					(error: any) => {
-						// console.log(error);
-
-
-						
-						// ? fix prevent default
-						this.errorEmailOrPassword = 'Invalid email or password';
+							this.loginForm.reset();
+							this.errorEmail = '';
+							this.errorEmailOrPassword = '';
+							this.router.navigateByUrl('/add-note');
+						}
+						else {
+							this.errorEmailOrPassword = 'Invalid email or password';
+						}
 					}
 				);
-
 			} catch (error: any) {
 				console.log(error);
-				this.errorEmailOrPassword = 'Invalid email or password';
+				this.errorEmailOrPassword = 'An error occured, please try again later';
 			}
 		} else {
 			const emailControl = this.loginForm.get('email');
-			if (emailControl && !emailControl.valid) {
-				this.errorEmail = 'Please provide a valid email';
-			}
+			const passwordControl = this.loginForm.get('password');
+
+			(emailControl && !emailControl.valid) ? this.errorEmail = 'Please provide a valid email' : this.errorEmail = '';
+
+			(passwordControl && !passwordControl.valid) ? this.errorPassword = 'Please provide a password' : this.errorPassword = '';
 		}
 	}
 }
