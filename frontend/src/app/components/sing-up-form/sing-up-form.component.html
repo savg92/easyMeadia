@@ -17,6 +17,7 @@
             class="input-group"
             required
         />
+		<p class="error-text">{{ errorFullName }}</p>
     </div>
 	<div class="flex flex-col">
 		<label
@@ -64,6 +65,7 @@
 					class="eye w-5 h-5"
 				/>
 			</button>
+			<p class="error-text">{{ errorPassword }}</p>
 		</div>
 	</div>
     <div class="flex flex-col">
@@ -95,19 +97,14 @@
 					class="eye w-5 h-5"
 				/>
             </button>
+			<p class="error-text">{{ errorConfirmPassword }}</p>
         </div>
     </div>
 	<div>
 		<input
 			type="submit"
 			value="SIGN UP"
-			class="submit-login hover:text-slate-400"
+			class="submit-login"
 		/>
-		<!-- <input
-			type="submit"
-			value="SIGN UP"
-			[disabled]="!loginForm.valid"
-			class="submit-login hover:text-slate-400"
-		/> -->
 	</div>
 </form>

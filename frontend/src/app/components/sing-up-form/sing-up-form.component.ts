@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import {
 	AbstractControl,
 	FormGroup,
@@ -6,18 +6,26 @@ import {
 	Validators,
 } from '@angular/forms';
 import { RegisterService } from '../../services/register/register.service';
+import { LoginService } from 'src/app/services/login/login.service';
+import { Router } from '@angular/router';
 @Component({
 	selector: 'app-sing-up-form',
 	templateUrl: './sing-up-form.component.html',
 	styleUrls: ['./sing-up-form.component.scss'],
 })
 export class SingUpFormComponent {
-	constructor(private registerService: RegisterService) {}
+	constructor(
+		private registerService: RegisterService,
+		private loginService: LoginService
+	) {}
 
 	// show/hide password
 	showPassword = false;
 	input = 'password';
 	input2 = 'password';
+
+	// router
+	router = inject(Router);
 
 	toggleShow() {
 		this.showPassword = !this.showPassword;
@@ -56,7 +64,10 @@ export class SingUpFormComponent {
 		{ validators: this.passwordMatchValidator }
 	);
 
+	errorFullName = '';
 	errorEmail = '';
+	errorPassword = '';
+	errorConfirmPassword = '';
 
 	@Output() fullNameSubmitted = new EventEmitter();
 	@Output() emailSubmitted = new EventEmitter();
@@ -70,23 +81,53 @@ export class SingUpFormComponent {
 			const password = this.loginForm.value.password;
 			this.passwordSubmitted.emit(password);
 
-			console.log(this.loginForm.value);
+			const loginForm = {
+				email: this.loginForm.value.email,
+				password: this.loginForm.value.password,
+			};
 
 			this.registerService.register(this.loginForm.value).subscribe(
 				(res) => {
+					//* TODO: show success message
 					console.log(res);
+					if (!res.error) {
+						this.loginService.login(loginForm).subscribe((res: any) => {
+							if (!res.error) {
+								document.cookie = `token=${res.token}; path=/; SameSite=Strict; Secure; HttpOnly; max-age=1800`;
+								localStorage.setItem('token', res.token);
+								console.log(res);
+
+								this.router.navigateByUrl('/add-note');
+							} else {
+								console.log(res);
+							}
+						});
+					}
 				},
 				(error) => {
 					console.log(error);
 				}
 			);
 		} else {
-			if (this.loginForm.errors?.['mismatch']) {
-				alert('Passwords do not match');
-			}
+			const nameControl = this.loginForm.get('fullName');
 			const emailControl = this.loginForm.get('email');
+			const passwordControl = this.loginForm.get('password');
+			const confirmPasswordControl = this.loginForm.get('confirmPassword');
+
+			if (nameControl && !nameControl.valid) {
+				this.errorFullName = 'Please provide a valid name';
+			}
+
 			if (emailControl && !emailControl.valid) {
 				this.errorEmail = 'Please provide a valid email';
+			}
+
+			if (passwordControl && !passwordControl.valid) {
+				this.errorPassword = 'Please provide a password';
+			}
+
+			if (confirmPasswordControl && !confirmPasswordControl.valid) {
+				this.errorConfirmPassword = 'Please confirm your password';
 			}
 		}
 	}
