@@ -55,7 +55,7 @@ export class SignInFormComponent {
 				this.loginService.login(this.loginForm.value).subscribe(
 					(res: any) => {
 						if (!res.error) {
-							document.cookie = `token=${res.token}; path=/; SameSite=Strict; Secure; HttpOnly; max-age=1800`;
+							// document.cookie = `token=${res.token}; path=/; SameSite=Strict; Secure; HttpOnly; max-age=1800`;
 							localStorage.setItem('token', res.token);
 							console.log(res);
 
