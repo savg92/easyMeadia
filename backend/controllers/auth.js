@@ -50,28 +50,28 @@ const loginUsers = async (req, res) => {
 	res.status(200).json({ message: 'Welcome', token: tkn })
 };
 
-// logOut: Function that allows a user to log out of the application.
-const logOut = async (req, res) => {
-	try{
-	const tkn = jwt.sign(
-		{ exp: Math.floor(Date.now() / 1000) + 1, data: null },
-		`expired key`,
-		{ algorithm: 'HS512' }
-	);
-	res
-		.cookie('token', tkn, { httpOnly: true })
-		.clearCookie('token')
-		.json({ message: 'Session closed' });
-	}
-	catch(err){
-		res.status(400).json({
-			error: true,
-			code: 400,
-			message: 'Error closing session',
-			answer: err,
-		});
-	}
-};
+// // logOut: Function that allows a user to log out of the application.
+// const logOut = async (req, res) => {
+// 	try{
+// 	const tkn = jwt.sign(
+// 		{ exp: Math.floor(Date.now() / 1000) + 1, data: null },
+// 		`expired key`,
+// 		{ algorithm: 'HS512' }
+// 	);
+// 	res
+// 		.cookie('token', tkn, { httpOnly: true })
+// 		.clearCookie('token')
+// 		.json({ message: 'Session closed' });
+// 	}
+// 	catch(err){
+// 		res.status(400).json({
+// 			error: true,
+// 			code: 400,
+// 			message: 'Error closing session',
+// 			answer: err,
+// 		});
+// 	}
+// };
 
 const createUser = async (req, res) => {
 	const hash = bcrypt.hashSync(req.body.password, 10);
@@ -114,4 +114,4 @@ const createUser = async (req, res) => {
 	}
 };
 
-module.exports = { loginUsers, logOut, createUser };
+module.exports = { loginUsers, createUser };
