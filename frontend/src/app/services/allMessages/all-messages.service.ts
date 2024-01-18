@@ -13,11 +13,11 @@ export class AllMessagesService {
 
   getAllMessages() {
     return this.http.get(this.api_url
-    //   , {
-    //   headers: {
-    //     Authorization: `Bearer ${this.token}`,
-    //   },
-    // }
+      , {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
+    }
     );
   }
 
