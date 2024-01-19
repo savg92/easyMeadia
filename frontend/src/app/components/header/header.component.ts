@@ -32,12 +32,44 @@ export class HeaderComponent {
 	logout() {
 		localStorage.removeItem('token');
 	}
-  
 
 	ngOnInit(): void {
 		if (this.decoded) {
-			this.user = this.decoded.data.name;
+			this.user =
+				this.decoded.data.name[0].toUpperCase() +
+				this.decoded.data.name.slice(1);
 		}
 	}
 
+	isFunc(func: any): boolean {
+		return typeof func === 'function';
+	}
+
+	nav = [
+		{
+			title: 'Create Publication',
+			img: '../../../assets/create.svg',
+			alt: 'create',
+			route: '/add-note',
+		},
+		{
+			title: 'My Publications',
+			img: '../../../assets/myNotes.svg',
+			alt: 'My notes',
+			route: '/my-notes',
+		},
+		{
+			title: 'See All Publications',
+			img: '../../../assets/allNotes.svg',
+			alt: 'All notes',
+			route: '/notes',
+		},
+		{
+			title: 'Logout',
+			img: '../../../assets/logout.svg',
+			alt: 'logout',
+			route: '/login',
+			func: () => this.logout(),
+		},
+	];
 }
