@@ -38,6 +38,22 @@
 		</button>
 	</form>
 
+	<dialog
+		[open]="isDialogOpen"
+		class="dialog w-3/5 top-1/4 rounded-3xl"
+	>
+		<div class="dialog__content p-4 flex flex-col items-center gap-6 pt-12">
+			<img src={{dialogImg}} alt="process result" />
+			<p class="dialog__text">{{dialogMessage}}</p>
+			<button
+				class="btn btn-primary"
+				(click)="closeDialog()"
+			>
+				OK
+			</button>
+		</div>
+	</dialog>
+
 	<app-note
 		[noteTitle]="noteTitle"
 		[noteText]="noteText"

@@ -57,6 +57,20 @@ export class AddNoteComponent {
 	// router for redirect
 	router = inject(Router);
 
+	// dialog
+	isDialogOpen = false;
+	dialogMessage = '';
+	dialogImg = '';
+	// isDialogOpen = true;
+	// dialogMessage = 'Post Created';
+	// dialogImg = '../../../assets/noteCreated.svg';
+
+	closeDialog() {
+		this.addNoteForm.reset();
+		this.isDialogOpen = false;
+		this.router.navigateByUrl('/notes');
+	}
+
 	addNote() {
 		let title = this.addNoteForm.value.title ?? '';
 		let text = this.addNoteForm.value.text ?? '';
@@ -68,15 +82,21 @@ export class AddNoteComponent {
 				UserId: this.decoded.data.id,
 			};
 
+			this.isDialogOpen = true;
+
 			try {
 				this.addMessageService.addMessage(newNote).subscribe(
 					(res: any) => {
-						this.addNoteForm.reset();
-						this.router.navigateByUrl('/notes');
+						// this.addNoteForm.reset();
+						// this.router.navigateByUrl('/notes');
+						this.dialogMessage = 'Post Created';
+						this.dialogImg = '../../../assets/noteCreated.svg';
 					},
 					(error) => {
 						console.log(error);
 						console.log(newNote);
+						this.dialogMessage = 'Uppss Try Later';
+						this.dialogImg = '../../../assets/noteErrorCreate.svg';
 					}
 				);
 			} catch (error) {
