@@ -86,5 +86,13 @@ export class NotesListComponent {
 		}
 	}
 
+	currentPage = 1;
+	notesPerPage = 10;
+
+	Math = Math;
+
+	changePage(page: number) {
+		this.currentPage = page;
+	}
 
 }

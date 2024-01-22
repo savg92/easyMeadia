@@ -30,7 +30,14 @@
 		*ngIf="notes.length > 0"
 		class="flex flex-col items-center justify-center gap-4"
 	>
-		<li *ngFor="let note of notes">
+		<li
+			*ngFor="
+				let note of notes
+					| slice
+						: (currentPage - 1) * notesPerPage
+						: currentPage * notesPerPage
+			"
+		>
 			<app-note
 				[noteTitle]="note.title"
 				[noteText]="note.body"
@@ -38,12 +45,23 @@
 				[user]="note.User?.name"
 			></app-note>
 		</li>
+		<button
+			*ngFor="
+				let page of [].constructor(Math.ceil(notes.length / notesPerPage))
+			"
+			(click)="changePage(page + 1)"
+		>
+			{{ page + 1 }}
+		</button>
 	</ul>
 	<div
 		*ngIf="notes.length === 0"
 		class="flex flex-col items-center justify-center gap-4"
 	>
-		<img src="../../../assets/noNote.svg" alt="No notes found" />
+		<img
+			src="../../../assets/noNote.svg"
+			alt="No notes found"
+		/>
 		<p class="text-center text-gray-500 text-2xl">Nothing to see here</p>
 	</div>
 </main>
