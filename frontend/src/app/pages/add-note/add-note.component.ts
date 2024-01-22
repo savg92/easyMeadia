@@ -61,9 +61,6 @@ export class AddNoteComponent {
 	isDialogOpen = false;
 	dialogMessage = '';
 	dialogImg = '';
-	// isDialogOpen = true;
-	// dialogMessage = 'Post Created';
-	// dialogImg = '../../../assets/noteCreated.svg';
 
 	closeDialog() {
 		this.addNoteForm.reset();
