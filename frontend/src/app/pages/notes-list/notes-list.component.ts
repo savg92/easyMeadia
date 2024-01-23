@@ -26,18 +26,18 @@ export class NotesListComponent {
 	searchDate = '';
 
 	// search notes, filter by title or body text (case insensitive) and show results
-	// searchNotesByTitle() {
-	// 	if (this.search) {
-	// 		this.notes = this.notes.filter((note) => {
-	// 			return (
-	// 				note.title?.toLowerCase().includes(this.search.toLowerCase()) ||
-	// 				note.body?.toLowerCase().includes(this.search.toLowerCase())
-	// 			);
-	// 		});
-	// 	} else {
-	// 		this.ngOnInit();
-	// 	}
-	// }
+	searchNotesByTitle() {
+		if (this.search) {
+			this.notes = this.notes.filter((note) => {
+				return (
+					note.title?.toLowerCase().includes(this.search.toLowerCase()) ||
+					note.body?.toLowerCase().includes(this.search.toLowerCase())
+				);
+			});
+		} else {
+			this.ngOnInit();
+		}
+	}
 
 	searchNotes() {		
 		if (this.search || this.searchDate) {
