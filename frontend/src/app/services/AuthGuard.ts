@@ -21,8 +21,7 @@ export class AuthGuard {
             localStorage.removeItem('token');
             return false;
         }
-        console.log('tokenExp', tokenExp);
-
+        
         // this.router.navigate(['/home']);
         return true;
     }
