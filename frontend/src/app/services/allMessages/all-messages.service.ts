@@ -12,7 +12,7 @@ export class AllMessagesService {
 
 
   getAllMessages() {
-    return this.http.get(this.api_url
+    return this.http.get<any>(this.api_url
       , {
       headers: {
         Authorization: `Bearer ${this.token}`,
