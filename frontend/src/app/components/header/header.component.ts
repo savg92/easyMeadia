@@ -1,15 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-type JwtPayload = {
-	iat: number;
-	exp: number;
-	data: {
-		id: number;
-    name: string;
-		type: string;
-	};
-};
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
@@ -17,12 +8,17 @@ type JwtPayload = {
 })
 export class HeaderComponent {
 	private tokenUserName: string | null = null;
+	logoRoute = '/login';
 
 	constructor(public router: Router) {
 		const token = localStorage.getItem('token');
+		const decoded = token ? JSON.parse(atob(token.split('.')[1])) : null;
+		const tokenExp = decoded.exp;
 		if (token) {
-			this.tokenUserName = JSON.parse(atob(token.split('.')[1])).data.name;
-			console.log('tokenExp', this.tokenUserName);
+			if (tokenExp > Date.now() / 1000) {
+				this.tokenUserName = decoded.data.name;
+				this.logoRoute = '/home';
+			}
 		}
 	}
 
@@ -31,11 +27,13 @@ export class HeaderComponent {
 
 	logout() {
 		localStorage.removeItem('token');
+		this.menuOpen = false;
 	}
 
 	ngOnInit(): void {
 		if (this.tokenUserName) {
-			this.user = this.tokenUserName[0].toUpperCase() + this.tokenUserName.slice(1);
+			this.user =
+				this.tokenUserName[0].toUpperCase() + this.tokenUserName.slice(1);
 		}
 	}
 
