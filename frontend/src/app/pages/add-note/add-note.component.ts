@@ -3,17 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NOTES } from '../../../notes';
 import { Router } from '@angular/router';
 import { AddMessageService } from 'src/app/services/addMessage/add-message.service';
-import { jwtDecode } from 'jwt-decode';
 
-type JwtPayload = {
-	iat: number;
-	exp: number;
-	data: {
-		id: number;
-		name: string;
-		type: string;
-	};
-};
 @Component({
 	selector: 'app-add-note',
 	templateUrl: './add-note.component.html',
@@ -52,7 +42,10 @@ export class AddNoteComponent {
 	});
 
 	// decode token for get user id
-	private decoded = jwtDecode<JwtPayload>(localStorage.getItem('token') ?? '');
+	private token = localStorage.getItem('token');
+	private decoded = this.token
+		? JSON.parse(atob(this.token.split('.')[1])).data
+		: null;
 
 	// router for redirect
 	router = inject(Router);
@@ -84,8 +77,6 @@ export class AddNoteComponent {
 			try {
 				this.addMessageService.addMessage(newNote).subscribe(
 					(res: any) => {
-						// this.addNoteForm.reset();
-						// this.router.navigateByUrl('/notes');
 						this.dialogMessage = 'Post Created';
 						this.dialogImg = '../../../assets/noteCreated.svg';
 					},

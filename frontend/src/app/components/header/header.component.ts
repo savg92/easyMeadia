@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
 
 type JwtPayload = {
 	iat: number;
@@ -17,12 +16,13 @@ type JwtPayload = {
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-	private decoded: JwtPayload | null = null;
+	private tokenUserName: string | null = null;
 
 	constructor(public router: Router) {
 		const token = localStorage.getItem('token');
-		if (token && token.split('.').length === 3) {
-			this.decoded = jwtDecode<JwtPayload>(token);
+		if (token) {
+			this.tokenUserName = JSON.parse(atob(token.split('.')[1])).data.name;
+			console.log('tokenExp', this.tokenUserName);
 		}
 	}
 
@@ -34,10 +34,8 @@ export class HeaderComponent {
 	}
 
 	ngOnInit(): void {
-		if (this.decoded) {
-			this.user =
-				this.decoded.data.name[0].toUpperCase() +
-				this.decoded.data.name.slice(1);
+		if (this.tokenUserName) {
+			this.user = this.tokenUserName[0].toUpperCase() + this.tokenUserName.slice(1);
 		}
 	}
 
