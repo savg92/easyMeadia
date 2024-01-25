@@ -17,7 +17,7 @@ export class HeaderComponent {
 		if (token) {
 			if (tokenExp > Date.now() / 1000) {
 				this.tokenUserName = decoded.data.name;
-				this.logoRoute = '/home';
+				this.logoRoute = '/add-note';
 			}
 		}
 	}
