@@ -5,13 +5,23 @@
 		<label class="searchtext text-start text-gray-500 text-sm w-full">
 			Date Select
 		</label>
-		<input
-			type="date"
-			placeholder="Search"
-			class="input-group rounded-3xl border-gray-300 border-2 w-72"
-			[(ngModel)]="searchDate"
-			(change)="searchNotesByDate()"
-		/>
+		<div
+			class="input-group rounded-3xl border-gray-300 border-2 w-72 flex bg-white"
+		>
+			<img
+				*ngIf="searchDate.length > 0"
+				src="../../../assets/dateReset.svg"
+				alt="Reset date"
+				(click)="clearDate()"
+			/>
+			<input
+				type="date"
+				placeholder="Search"
+				class="input-group rounded-3xl border-gray-300 border-2 w-72"
+				[(ngModel)]="searchDate"
+				(change)="searchNotesByDate()"
+			/>
+		</div>
 	</div>
 
 	<ul

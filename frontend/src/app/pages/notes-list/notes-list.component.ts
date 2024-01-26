@@ -25,6 +25,11 @@ export class NotesListComponent {
 	search = '';
 	searchDate = '';
 
+	clearDate() {
+		this.searchDate = '';
+		this.ngOnInit();
+	}
+
 	// search notes, filter by title or body text (case insensitive) and show results
 	searchNotesByTitle() {
 		if (this.search) {

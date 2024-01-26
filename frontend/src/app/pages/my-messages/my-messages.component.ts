@@ -9,7 +9,7 @@ import { NOTES } from 'src/notes';
 })
 export class MyMessagesComponent {
 	constructor(private messagesByIdService: MessagesByIdService) {}
-	
+
 	ngOnInit(): void {
 		this.messagesByIdService.getMessagesById().subscribe(
 			(res: any) => {
@@ -26,6 +26,11 @@ export class MyMessagesComponent {
 	search = '';
 	searchDate = '';
 
+	clearDate() {
+		this.searchDate = '';
+		this.ngOnInit();
+	}
+	
 	// search notes, filter by date and show results
 	searchNotesByDate() {
 		if (this.searchDate) {

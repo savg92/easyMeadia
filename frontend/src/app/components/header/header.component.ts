@@ -13,8 +13,8 @@ export class HeaderComponent {
 	constructor(public router: Router) {
 		const token = localStorage.getItem('token');
 		const decoded = token ? JSON.parse(atob(token.split('.')[1])) : null;
-		const tokenExp = decoded.exp;
 		if (token) {
+			const tokenExp = decoded.exp;
 			if (tokenExp > Date.now() / 1000) {
 				this.tokenUserName = decoded.data.name;
 				this.logoRoute = '/add-note';
