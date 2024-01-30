@@ -21,7 +21,6 @@ import { SingUpComponent } from './pages/sing-up/sing-up.component';
 import { SingUpFormComponent } from './components/sing-up-form/sing-up-form.component';
 import { OtherComponent } from './other/other.component';
 
-import { AdminModule } from './admin/admin.module';
 import { LoginComponent } from './pages/login/login.component';
 
 import { NoteComponent } from './components/note/note.component';
@@ -57,7 +56,6 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 		FormsModule,
 		ReactiveFormsModule,
 		RouterModule.forRoot(routeConfig),
-		AdminModule,
 		HttpClientModule,
 	],
 	providers: [

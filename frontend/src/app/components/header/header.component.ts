@@ -14,8 +14,6 @@ export class HeaderComponent {
 
 	constructor(public router: Router, private authGuard: AuthGuard) {
 		this.authGuard.isLoggedIn.subscribe((loggedIn) => {
-			// this.menuOpen = loggedIn;
-			console.log('menuOpen', loggedIn);
 			this.loggedIn = loggedIn;
 		});
 
