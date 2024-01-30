@@ -30,7 +30,7 @@ export class MyMessagesComponent {
 		this.searchDate = '';
 		this.ngOnInit();
 	}
-	
+
 	// search notes, filter by date and show results
 	searchNotesByDate() {
 		if (this.searchDate) {
@@ -59,5 +59,15 @@ export class MyMessagesComponent {
 		} else {
 			this.ngOnInit();
 		}
+	}
+
+	// pagination variables
+	totalItems = this.notes.length;
+	itemsPerPage = 3;
+	currentPage = 1;
+
+	// change the page
+	onPageChange(page: number) {
+		this.currentPage = page;
 	}
 }

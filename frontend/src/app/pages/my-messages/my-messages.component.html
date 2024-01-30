@@ -28,7 +28,14 @@
 		*ngIf="notes.length > 0"
 		class="flex flex-col items-center justify-center gap-4"
 	>
-		<li *ngFor="let note of notes">
+		<li
+			*ngFor="
+				let note of notes
+					| slice
+						: (currentPage - 1) * itemsPerPage
+						: currentPage * itemsPerPage
+			"
+		>
 			<app-note
 				[noteTitle]="note.title"
 				[noteText]="note.body"
@@ -47,4 +54,11 @@
 		/>
 		<p class="text-center text-gray-500 text-2xl">Nothing to see here</p>
 	</div>
+
+	<app-pagination
+		*ngIf="notes.length > itemsPerPage"
+		[totalItems]="notes.length"
+		[itemsPerPage]="itemsPerPage"
+		(pageChange)="onPageChange($event)"
+	></app-pagination>
 </main>

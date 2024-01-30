@@ -91,12 +91,13 @@ export class NotesListComponent {
 		}
 	}
 
+	// pagination variables
+	totalItems = this.notes.length;
+	itemsPerPage = 3;
 	currentPage = 1;
-	notesPerPage = 10;
 
-	Math = Math;
-
-	changePage(page: number) {
+	// change the page
+	onPageChange(page: number) {
 		this.currentPage = page;
 	}
 

@@ -17,7 +17,9 @@
 		<label class="searchtext text-start text-gray-500 text-sm w-full">
 			Date Select
 		</label>
-		<div class="input-group rounded-3xl border-gray-300 border-2 w-72 flex bg-white">
+		<div
+			class="input-group rounded-3xl border-gray-300 border-2 w-72 flex bg-white"
+		>
 			<img
 				*ngIf="searchDate.length > 0"
 				src="../../../assets/dateReset.svg"
@@ -38,8 +40,14 @@
 		*ngIf="notes.length > 0"
 		class="flex flex-col items-center justify-center gap-4"
 	>
-		<!-- <li *ngFor="let note of notes | slice:(currentPage-1)*notesPerPage:currentPage*notesPerPage"> -->
-		<li *ngFor="let note of notes">
+		<li
+			*ngFor="
+				let note of notes
+					| slice
+						: (currentPage - 1) * itemsPerPage
+						: currentPage * itemsPerPage
+			"
+		>
 			<app-note
 				[noteTitle]="note.title"
 				[noteText]="note.body"
@@ -47,14 +55,6 @@
 				[user]="note.User?.name"
 			></app-note>
 		</li>
-		<!-- <button
-			*ngFor="
-				let page of [].constructor(Math.ceil(notes.length / notesPerPage))
-			"
-			(click)="changePage(page + 1)"
-		>
-			{{ page + 1 }}
-		</button> -->
 	</ul>
 	<div
 		*ngIf="notes.length === 0"
@@ -66,4 +66,11 @@
 		/>
 		<p class="text-center text-gray-500 text-2xl">Nothing to see here</p>
 	</div>
+
+	<app-pagination
+		*ngIf="notes.length > itemsPerPage"
+		[totalItems]="notes.length"
+		[itemsPerPage]="itemsPerPage"
+		(pageChange)="onPageChange($event)"
+	></app-pagination>
 </main>

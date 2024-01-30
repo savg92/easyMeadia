@@ -1,7 +1,16 @@
 <nav *ngIf="totalItems > itemsPerPage">
-	<ul class="pagination">
+	<ul class="pagination flex justify-center gap-x-3">
+        <li
+            class="page-item cursor-pointer"
+            [class.disabled]="currentPage === 1"
+            (click)="changePage(1)"
+        >
+            <a class="page-link" aria-label="First">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
 		<li
-			class="page-item"
+			class="page-item cursor-pointer"
 			*ngFor="let page of pages"
 			[class.active]="page === currentPage"
 		>
@@ -11,5 +20,14 @@
 				>{{ page }}</a
 			>
 		</li>
+        <li
+            class="page-item cursor-pointer"
+            [class.disabled]="currentPage === pages.length"
+            (click)="changePage(pages.length)"
+        >
+            <a class="page-link" aria-label="Last">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
 	</ul>
 </nav>
