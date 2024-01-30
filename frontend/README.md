@@ -35,11 +35,11 @@ The View All Posts page is similar to the View My Posts page, but it allows the 
 Please refer to the [Usage](./frontend/README.md#usage) section in the frontend README.md file for information on how to use the frontend in detail.
 
 ## Used Technologies
-- Angular
-- TypeScript
-- HTML
-- CSS
-- Tailwind CSS
+- Angular [https://angular.io/](https://angular.io/)
+- TypeScript [https://www.typescriptlang.org/](https://www.typescriptlang.org/)
+- HTML [https://developer.mozilla.org/en-US/docs/Web/HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- CSS [https://developer.mozilla.org/en-US/docs/Web/CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- Tailwind CSS [https://tailwindcss.com/](https://tailwindcss.com/)
 
 ## License
 This project is licensed under the terms of the MIT license.
