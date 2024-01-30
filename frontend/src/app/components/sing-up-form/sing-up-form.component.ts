@@ -54,10 +54,10 @@ export class SingUpFormComponent {
 			]),
 			password: new FormControl('', [
 				Validators.required,
-				// Validators.minLength(8),
-				// Validators.pattern(
-				// 	'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$'
-				// ),
+				Validators.minLength(8),
+				Validators.pattern(
+					'^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$'
+				),
 			]),
 			confirmPassword: new FormControl('', Validators.required),
 		},
