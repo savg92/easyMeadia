@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthGuard } from 'src/app/services/AuthGuard';
 
 @Component({
 	selector: 'app-header',
@@ -9,8 +10,15 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
 	private tokenUserName: string | null = null;
 	logoRoute = '/login';
+	loggedIn = false;
 
-	constructor(public router: Router) {
+	constructor(public router: Router, private authGuard: AuthGuard) {
+		this.authGuard.isLoggedIn.subscribe((loggedIn) => {
+			// this.menuOpen = loggedIn;
+			console.log('menuOpen', loggedIn);
+			this.loggedIn = loggedIn;
+		});
+
 		const token = localStorage.getItem('token');
 		const decoded = token ? JSON.parse(atob(token.split('.')[1])) : null;
 		if (token) {
@@ -28,6 +36,7 @@ export class HeaderComponent {
 	logout() {
 		localStorage.removeItem('token');
 		this.menuOpen = false;
+		this.loggedIn = false;
 	}
 
 	ngOnInit(): void {

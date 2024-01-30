@@ -16,7 +16,7 @@
 		</a>
 	</div>
 	<div
-		*ngIf="router.url !== '/login' && router.url !== '/sign-up'"
+		*ngIf="loggedIn"
 		class="max-w-screen-xl flex items-center justify-between py-4"
 	>
 		<button
@@ -24,7 +24,7 @@
 			type="button"
 			class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none"
 			aria-controls="navbar-default"
-			aria-expanded="false"
+			[attr.aria-expanded]="menuOpen ? 'true' : 'false'"
 			(click)="menuOpen = !menuOpen"
 		>
 			<span class="sr-only">Open main menu</span>
@@ -37,8 +37,9 @@
 			<img
 				*ngIf="menuOpen"
 				src="../../../assets/hamburgerMenu.svg"
-				alt="Close X"
+				alt="Open menu"
 				class="w-6 h-6"
+				aria-label="Open menu"
 			/>
 		</button>
 		<div
