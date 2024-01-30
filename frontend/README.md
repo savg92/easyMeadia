@@ -34,12 +34,12 @@ The View All Posts page is similar to the View My Posts page, but it allows the 
 ## Usage
 Please refer to the [Usage](./frontend/README.md#usage) section in the frontend README.md file for information on how to use the frontend in detail.
 
-## License
-This project is licensed under the terms of the MIT license.
-
 ## Used Technologies
 - Angular
 - TypeScript
 - HTML
 - CSS
 - Tailwind CSS
+
+## License
+This project is licensed under the terms of the MIT license.
