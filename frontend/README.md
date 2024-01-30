@@ -1,27 +1,21 @@
-# MyApp
+## Description
+This is a simple social media application that allows users to create posts and view posts from other users. The application is mobile-only and was built using Angular.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
 
-## Development server
+#Section 1: Authentication
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This section covers the login and registration pages. For the registration page, the user is required to provide a username, email, and password. The username should accept only text and spaces, while the email should be a valid email address. The password must be at least 8 characters long. For the login page, the user must provide their email and password. If the authentication fails, an error message will be displayed below the Sign In button.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#Section 2: Application
 
-## Build
+This section covers the application pages. After logging in, the user will have access to three modules: Create Post, View My Posts, and View All Posts. Each module has a specific URL that can be accessed either by typing the URL directly into the browser or by clicking on the links in the navbar. The navbar also contains the user's name and links to log out.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The Create Post module allows the user to create a post. The user will see a card in the bottom portion of the screen that updates as they write, displaying the title, message, author name, date, and time. When the post is created, a success or error modal will be displayed.
 
-## Running unit tests
+The View My Posts page allows the user to filter their posts by date. The user can select a date, and the page will display only the posts that were created on that date. The page also has a pagination feature that displays a maximum of three posts per page. If there are no posts for the selected date, a message will be displayed.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The View All Posts page is similar to the View My Posts page, but it allows the user to filter posts by all users and by date. The user can select one or both filters, and the page will display the posts that match the criteria.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**Note:**
+ The application is mobile-only, but the candidate is free to implement the desktop version as well.
