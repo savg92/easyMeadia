@@ -31,6 +31,7 @@ import { LoginService } from './services/login/login.service';
 import { AllMessagesService } from './services/allMessages/all-messages.service';
 import { AddMessageService } from './services/addMessage/add-message.service';
 import { MyMessagesComponent } from './pages/my-messages/my-messages.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
 	declarations: [
@@ -48,6 +49,7 @@ import { MyMessagesComponent } from './pages/my-messages/my-messages.component';
 		LoginComponent,
 		NoteComponent,
 		MyMessagesComponent,
+  		PaginationComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -9,7 +9,7 @@ import { AuthService } from '../../auth/auth.service';
 export class AdminComponent {
   constructor(public authService: AuthService) { 
     const isLoggedIn = this.authService;
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
   }
 
   onLogout() {

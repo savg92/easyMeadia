@@ -82,7 +82,6 @@ export class AddNoteComponent {
 					},
 					(error) => {
 						console.log(error);
-						console.log(newNote);
 						this.dialogMessage = 'Uppss Try Later';
 						this.dialogImg = '../../../assets/noteErrorCreate.svg';
 					}

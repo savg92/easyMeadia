@@ -57,7 +57,7 @@ export class SignInFormComponent {
 						if (!res.error) {
 							// document.cookie = `token=${res.token}; path=/; SameSite=Strict; Secure; HttpOnly; max-age=1800`;
 							localStorage.setItem('token', res.token);
-							console.log(res);
+							// console.log(res);
 
 							this.loginForm.reset();
 							this.errorEmail = '';

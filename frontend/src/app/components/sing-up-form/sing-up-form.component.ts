@@ -89,8 +89,6 @@ export class SingUpFormComponent {
 
 			this.registerService.register(this.loginForm.value).subscribe(
 				(res) => {
-					//* TODO: show success message
-					console.log(res);
 					if (!res.error) {
 						this.loginService.login(loginForm).subscribe((res: any) => {
 							if (!res.error) {

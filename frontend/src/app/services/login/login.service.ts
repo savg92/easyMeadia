@@ -9,9 +9,9 @@ export class LoginService {
 
 	constructor(private http: HttpClient) {}
 
-  login(userData: any) {
-    return this.http.post<any>(this.api_url, userData);
-  }
+	login(userData: any) {
+		return this.http.post<any>(this.api_url, userData);
+	}
 
 	error(error: HttpErrorResponse) {
 		console.log(error);
