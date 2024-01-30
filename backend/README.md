@@ -1,91 +1,56 @@
-# Delilah Resto API
- Esté proyecto plantea la creación de un sistema de gestion de clientes/contactos para una empresa. <br>
- Deberás poner en funcionamiento las partes necesarias para montar una REST API que permita realizar altas, bajas, modificaciones y obtención de información sobre una estructura de datos que podría consumir un cliente.
+# EasyMedia API
+## Description
+This is the backend of the EasyMedia project. It is a REST API that allows you to create, read, update, and delete posts. It also allows you to register and authenticate users. The API is built using Node.js and Express. The database used is PostgreSQL.
 
-## Instrucciones
-Instrucciones que permitirán la utilización de una copia de los archivos de forma local en tu computadora.
+## Installation
+### Prerequisites
+- Node.js
+- PostgreSQL
 
-### Requisitos basicos
-- Tener instalado NodeJS.
-- Tener instalado MySQL.
+### Steps
+1. Clone the repository
+2. Install dependencies
+    - Navigate to the backend directory and run `npm install`
+3. Create a database in PostgreSQL
+4. Create a .env file in the backend directory and add the following variables:
+    - DB_HOST
+    - DB_PORT
+    - DB_NAME
+    - DB_USER
+    - DB_PASSWORD
+    - JWT_SECRET
+5. Run the backend server
+    - Navigate to the backend directory and run `npm start`
+6. Navigate to http://localhost:3000/ in your browser
+7. Use the API
 
-### Instalacion
-- Instalar las dependencias, base de datos, migraciones. Ejecutando:
-  ```
-  npm install
-  npx sequelize db:create
-  npx sequelize db:migrate
-  npx sequelize-cli db:seed:all
-  ```
-- Siguiendo el ejemplo existente en el archivo **.env.example**. <br>
-  Crear un archivo ***.env*** en la raíz del proyecto y crear las variables del entorno a gusto.
-- Abrir el archivo ***config.json*** ubicado en ***/dataWarehouseAPI/config/*** y modifica las variables _username_ y _password_ de la sección ***development***, a las correspondientes a tu base de datos.
-- Instalar la dependencia Nodemon para un uso continuo de la API (recomendado) (en dado caso de no isntalarse, se debera modificar el archivo ***package.json***)
-  ```
-  npm i nodemon
-  ```
-- Ejecuta el siguiente comando para iniciar el servidor node del proyecto
-  ```
-  npm run start
-  ```
-- En caso de querer sumistrar datos de ejemplo a la base de datos Delilah Resto, ejecuta
-  ```
-  npx sequelize-cli db:seed:all
-  ```
+## Routes
+### Authentication
+- POST /api/auth/register
+- POST /api/auth/login
 
-## Documentación
-La documentación de la API puede encontrarse en el archivo **dataWarehous.yaml** presente en el directorio raíz del repositorio.
-Para mejor visualización, puedes ingresar a [swagger](https://editor.swagger.io/#).
+### Posts
+- GET /api/posts
+- GET /api/posts/:id
+- POST /api/posts
+- PUT /api/posts/:id
+- DELETE /api/posts/:id
 
-Tambien se agregó el archivo **dataWarehouse.postman_collection.json** en el directorio raíz del repositorio para ser importado en POSTMAN; este ya contiene todas las rutas de la API.
 
-Para iniciar las prubas de la API, se recomienda iniciar usando:
-- El usuario ***ADMIN***.<br>
-  ***email:*** admin@admin.com <br>
-  ***password:*** 123
 
-### Endpoints
-La url base es 
-127.0.0.1:{{port}}
+## Used Technologies
+- Node.js [https://nodejs.org/en/](https://nodejs.org/en/)
+- Express [https://expressjs.com/](https://expressjs.com/)
+- PostgreSQL [https://www.postgresql.org/](https://www.postgresql.org/)
+- Sequelize [https://sequelize.org/](https://sequelize.org/)
+- JWT [https://jwt.io/](https://jwt.io/)
+- Bcrypt [https://www.npmjs.com/package/bcrypt](https://www.npmjs.com/package/bcrypt)
+- Nodemon [https://www.npmjs.com/package/nodemon](https://www.npmjs.com/package/nodemon)
+- Cors [https://www.npmjs.com/package/cors](https://www.npmjs.com/package/cors)
+- Cookie-parser [https://www.npmjs.com/package/cookie-parser](https://www.npmjs.com/package/cookie-parser)
+- Hbs [https://www.npmjs.com/package/hbs](https://www.npmjs.com/package/hbs)
+- Helmet [https://www.npmjs.com/package/helmet](https://www.npmjs.com/package/helmet)
+- Morgan [https://www.npmjs.com/package/morgan](https://www.npmjs.com/package/morgan)
 
-La API cuenta con los siguientes endpoints:
-- /api/login
-<br>(Los siguientes endpoints requieren del Bearer token, otorgado en el login)
-- /api/logout
-- /api/users
-- /api/users/:id
-- /api/channels
-- /api/channels/:id
-- /api/cities
-- /api/cities/:id
-- /api/companies
-- /api/companies/:id
-- /api/contactsChannels
-- /api/contactsChannels/:id
-- /api/contacts
-- /api/contacts/:id
-- /api/countries
-- /api/countries/:id
-- /api/regions
-- /api/regions/:id
-
-## Construido con
-
-Herramientas y/o paquetes usados en el proyecto:
-
-- [NodeJS](https://nodejs.org/en/)
-- [bcrypt](https://www.npmjs.com/package/bcrypt)
-- [cookie-parser](https://www.npmjs.com/package/cookie-parser)
-- [debug](https://www.npmjs.com/package/debug)
-- [express](https://www.npmjs.com/package/express)
-- [express-jwt](https://www.npmjs.com/package/express-jwt)
-- [hbs](https://www.npmjs.com/package/hbs)
-- [helmet](https://www.npmjs.com/package/helmet)
-- [http-errors](https://www.npmjs.com/package/http-errors)
-- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-- [morgan](https://www.npmjs.com/package/morgan)
-- [mysql2](https://www.npmjs.com/package/mysql2)
-- [sequelize](https://www.npmjs.com/package/sequelize)
-- [sequelize-cli](https://www.npmjs.com/package/sequelize-cli)
-- [nodemon](https://www.npmjs.com/package/nodemon)
-- [express-generator](https://www.npmjs.com/package/express-generator)
+## License
+This project is licensed under the terms of the MIT license.
