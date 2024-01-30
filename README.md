@@ -30,9 +30,9 @@ This project includes a frontend and a backend. The frontend is built using Angu
 7. Navigate to http://localhost:4200/ in your browser
 
 ## Usage
-Please refer to the [Usage](./backend/README.md#usage) section in the [**backend**] README.md file for information on how to use the backend in detail.
+Please refer to the [Usage](./backend/README.md#usage) section in the <u>**backend**</u> README.md file for detailed information and on how to use the <u>**backend**</u> in detail.
 
-Please refer to the [Usage](./frontend/README.md#usage) section in the **frontend** README.md file for information on how to use the frontend in detail.
+Please refer to the [Usage](./frontend/README.md#usage) section in the <u>**frontend**</u> README.md file for detailed information and on how to use the <u>**frontend**</u> in detail.
 
 ## License
 This project is licensed under the terms of the MIT license.
