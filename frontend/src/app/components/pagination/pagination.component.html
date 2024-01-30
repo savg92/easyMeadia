@@ -1,9 +1,10 @@
 <nav *ngIf="totalItems > itemsPerPage">
-	<ul class="pagination flex justify-center gap-x-3">
+	<ul class="pagination flex justify-center gap-x-3 text-xl text-gray-500">
 		<li
 			class="page-item cursor-pointer"
 			[class.disabled]="currentPage === 1"
 			(click)="changePage(1)"
+            *ngIf="currentPage !== 1"
 		>
 			<a
 				class="page-link"
@@ -12,13 +13,26 @@
 				<span aria-hidden="true">&laquo;</span>
 			</a>
 		</li>
+        <li
+            class="page-item cursor-pointer"
+            [class.disabled]="currentPage === 1"
+            (click)="changePage(currentPage - 1)"
+            *ngIf="currentPage !== 1"
+        >
+            <a
+                class="page-link"
+                aria-label="Previous"
+            >
+                <span aria-hidden="true">&lsaquo;</span>
+            </a>
+        </li>
 		<li
 			class="page-item cursor-pointer active:underline"
 			*ngFor="let page of pages"
 			[class.active]="page === currentPage"
 			[ngClass]="{
 				'
-                underline text-white
+                underline text-gray-600
                 ': page === currentPage
 			}"
 		>
@@ -28,10 +42,24 @@
 				>{{ page }}</a
 			>
 		</li>
+        <li
+            class="page-item cursor-pointer"
+            [class.disabled]="currentPage === pages.length"
+            (click)="changePage(currentPage + 1)"
+            *ngIf="currentPage !== pages.length"
+        >
+            <a
+                class="page-link"
+                aria-label="Next"
+            >
+                <span aria-hidden="true">&rsaquo;</span>
+            </a>
+        </li>
 		<li
 			class="page-item cursor-pointer"
 			[class.disabled]="currentPage === pages.length"
 			(click)="changePage(pages.length)"
+            *ngIf="currentPage !== pages.length"
 		>
 			<a
 				class="page-link"
