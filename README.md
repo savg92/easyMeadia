@@ -43,7 +43,7 @@ This project includes a frontend and a backend. The frontend is built using Angu
    ```bash
    npm start
    ```
-7. Navigate to http://localhost:4200/ in your browser to use the frontend application
+7. Navigate to http://localhost:4200/ in your browser to use the frontend application.
 
 ## Usage
 
